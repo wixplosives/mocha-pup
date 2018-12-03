@@ -13,11 +13,16 @@ describe('mocha-pup', () => {
         expect(exitCode).to.equal(0)
     })
 
-    it('exposes errors', () => {
+    it('fails when there are test errors', () => {
         const { output, exitCode } = runCommand(`${mochaPup} ./should-fail.spec.js`, { cwd: fixturesRoot })
 
         expect(output).to.include(`1 tests failed`)
         expect(output).to.include(`some error message`)
         expect(exitCode).to.not.equal(0)
     })
+
+    it('targets files when provided with globs')
+    it('errors if not finding test files')
+    it('fails when there are bundling errors')
+
 })
