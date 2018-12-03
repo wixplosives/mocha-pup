@@ -20,8 +20,8 @@ program
     .option('-d, --dev', 'never-closed, non-headless, open-devtools puppeteer session')
     .option('-l, --list-files', 'list found test files')
     .option('-t, --timeout <ms>', 'mocha timeout in ms', 2000)
-    .option('--reporter <spec/html/dot/nyan>', 'mocha reporter to use', 'spec')
-    .option('--ui <bdd|tdd|qunit|exports>', 'user interface of mocha', 'bdd')
+    .option('--reporter <spec/html/dot/...>', 'mocha reporter to use', 'spec')
+    .option('--ui <bdd|tdd|qunit|exports>', 'mocha user interface', 'bdd')
     .option('--no-colors', 'turn off colors (default is env detected)')
     .parse(process.argv)
 

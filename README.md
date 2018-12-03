@@ -32,7 +32,7 @@ mocha-pup "test/**/*.spec.ts" -c webpack.config.js
   -d, --dev                           never-closed, non-headless, open-devtools puppeteer session
   -l, --list-files                    list found test files
   -t, --timeout <ms>                  mocha timeout in ms (default: 2000)
-  --reporter <spec/html/dot/nyan>     mocha reporter to use (default: "spec")
+  --reporter <spec/html/dot/...>      mocha reporter to use (default: "spec")
   --ui <bdd|tdd|qunit|exports>        user interface of mocha (default: "bdd")
   --no-colors                         turn off colors (default is env detected)
   -h, --help                          output usage information
