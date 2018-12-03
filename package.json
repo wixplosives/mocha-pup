@@ -53,5 +53,6 @@
     "src",
     "static"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "git@github.com:wixplosives/mocha-pup.git"
 }
