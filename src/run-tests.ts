@@ -1,4 +1,5 @@
 import express from 'express'
+import chalk from 'chalk'
 import puppeteer from 'puppeteer'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
@@ -6,7 +7,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { safeListeningHttpServer } from 'create-listening-server'
 import { hookPageConsole } from './hook-page-console'
 
-const mochaLibPath = require.resolve('mocha/mocha.js')
 const mochaSetupPath = require.resolve('../static/mocha-setup.js')
 
 export interface IRunTestsOptions {
@@ -17,6 +17,7 @@ export interface IRunTestsOptions {
     colors?: boolean
     reporter?: string
     ui?: string
+    timeout?: number
 }
 
 export async function runTests(testFiles: string[], options: IRunTestsOptions = {}) {
@@ -29,7 +30,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
             ...webpackConfig,
             mode: 'development',
             devtool: false,
-            entry: [mochaLibPath, mochaSetupPath, ...testFiles],
+            entry: [mochaSetupPath, ...testFiles],
             plugins: createPluginsConfig(webpackConfig.plugins, options)
         })
 
@@ -77,7 +78,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
         const failedCount = await Promise.race([waitForTestResults(page), failsOnPageError])
 
         if (failedCount) {
-            throw new Error(`${failedCount} tests failed!`)
+            throw chalk.red(`${failedCount} tests failed!`)
         }
     } finally {
         if (!keepOpen) {
@@ -91,10 +92,11 @@ function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IR
         ...existingPlugins.filter(p => !isHtmlWebpackPlugin(p)), // filter user's html webpack plugin
         new HtmlWebpackPlugin(),
         new webpack.DefinePlugin({
-            mochaOptions: {
-                ui: JSON.stringify(options.ui),
-                useColors: options.colors,
-                reporter: JSON.stringify(options.reporter),
+            'process.env': {
+                MOCHA_UI: JSON.stringify(options.ui),
+                MOCHA_COLORS: options.colors,
+                MOCHA_REPORTER: JSON.stringify(options.reporter),
+                MOCHA_TIMEOUT: options.timeout,
             }
         })
     ]

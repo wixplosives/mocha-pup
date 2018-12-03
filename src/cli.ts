@@ -19,11 +19,13 @@ program
     .option('-c, --webpack-config <config file>', 'webpack configuration file to bundle with')
     .option('-d, --dev', 'never-closed, non-headless, open-devtools puppeteer session')
     .option('-l, --list-files', 'list found test files')
-    .option('--reporter <spec/html>', 'reporter to use', 'spec')
-    .option('--no-colors', 'turn off colors (default: env detected)')
+    .option('-t, --timeout <ms>', 'mocha timeout in ms', 2000)
+    .option('--reporter <spec/html/dot/nyan>', 'mocha reporter to use', 'spec')
+    .option('--ui <bdd|tdd|qunit|exports>', 'user interface of mocha', 'bdd')
+    .option('--no-colors', 'turn off colors (default is env detected)')
     .parse(process.argv)
 
-const { args, webpackConfig: userWebpackConfig, dev, listFiles, colors, reporter } = program
+const { args, webpackConfig: userWebpackConfig, dev, listFiles, colors, reporter, timeout, ui } = program
 
 const foundFiles: string[] = []
 for (const arg of args) {
@@ -35,7 +37,7 @@ for (const arg of args) {
 const { length: numFound } = foundFiles
 if (numFound === 0) {
     program.outputHelp()
-    printErrorAndExit(`cannot find any test files`)
+    printErrorAndExit(chalk.red(`Cannot find any test files`))
 }
 
 console.log(`Found ${numFound} test files in ${process.cwd()}`)
@@ -49,7 +51,7 @@ const webpackConfig: webpack.Configuration = userWebpackConfig ? require(path.re
 const puppeteerConfig: puppeteer.LaunchOptions = dev ? { devtools: true } : {}
 
 if (typeof webpackConfig === 'function') {
-    throw new Error('Webpack configuration file exports a function, which is not yet supported.')
+    printErrorAndExit(chalk.red('Webpack configuration file exports a function, which is not yet supported.'))
 }
 
 runTests(foundFiles, {
@@ -57,7 +59,9 @@ runTests(foundFiles, {
     puppeteerConfig,
     keepOpen: dev,
     colors: colors === undefined ? !!chalk.supportsColor : colors,
-    reporter
+    reporter,
+    timeout,
+    ui
 }).catch(printErrorAndExit)
 
 function printErrorAndExit(message: unknown) {
