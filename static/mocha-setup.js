@@ -10,7 +10,7 @@ const useColors = process.env.MOCHA_COLORS
 const timeout = process.env.MOCHA_TIMEOUT || 2000
 
 // html reporter needs a container
-if (!reporter || reporter === 'html') {
+if (reporter === 'html') {
     const mochaContainer = document.createElement('div')
     mochaContainer.id = 'mocha'
     document.body.appendChild(mochaContainer)
@@ -18,6 +18,7 @@ if (!reporter || reporter === 'html') {
 
 mocha.setup({ui, reporter, useColors, timeout})
 
+// save test status on window to access it with puppeteer
 const mochaStatus = window.mochaStatus = {
     completed: 0,
     failed: 0,
