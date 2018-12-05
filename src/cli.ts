@@ -20,12 +20,23 @@ program
     .option('-d, --dev', 'never-closed, non-headless, open-devtools puppeteer session')
     .option('-l, --list-files', 'list found test files')
     .option('-t, --timeout <ms>', 'mocha timeout in ms', 2000)
-    .option('--reporter <spec/html/dot/...>', 'mocha reporter to use', 'spec')
+    .option('-p, --port <number>', 'port to start the http server with', 3000)
+    .option('--reporter <spec/html/dot/...>', 'mocha reporter to use')
     .option('--ui <bdd|tdd|qunit|exports>', 'mocha user interface', 'bdd')
     .option('--no-colors', 'turn off colors (default is env detected)')
     .parse(process.argv)
 
-const { args, webpackConfig: userWebpackConfig, dev, listFiles, colors, reporter, timeout, ui } = program
+const {
+    args,
+    webpackConfig: webpackConfigPath,
+    dev,
+    listFiles,
+    colors,
+    reporter,
+    timeout,
+    ui,
+    port: preferredPort
+} = program
 
 const foundFiles: string[] = []
 for (const arg of args) {
@@ -47,19 +58,25 @@ if (listFiles) {
     }
 }
 
-const webpackConfig: webpack.Configuration = userWebpackConfig ? require(path.resolve(userWebpackConfig)) : {}
-const puppeteerConfig: puppeteer.LaunchOptions = dev ? { devtools: true } : {}
+const puppeteerConfig: puppeteer.LaunchOptions = dev ?
+    { defaultViewport: null as any, devtools: true } :
+    { defaultViewport: { width: 1024, height: 768 } }
 
+// load user's webpack configuration
+const webpackConfig: webpack.Configuration = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {}
 if (typeof webpackConfig === 'function') {
     printErrorAndExit(chalk.red('Webpack configuration file exports a function, which is not yet supported.'))
 }
 
+const defaultReporter = dev ? 'html' : 'spec'
+
 runTests(foundFiles, {
+    preferredPort,
     webpackConfig,
     puppeteerConfig,
     keepOpen: dev,
     colors: colors === undefined ? !!chalk.supportsColor : colors,
-    reporter,
+    reporter: reporter || defaultReporter,
     timeout,
     ui
 }).catch(printErrorAndExit)

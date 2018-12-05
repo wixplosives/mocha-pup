@@ -27,10 +27,13 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
     try {
         console.log(`Bundling using webpack...`)
         const compiler = webpack({
-            ...webpackConfig,
             mode: 'development',
-            devtool: false,
-            entry: [mochaSetupPath, ...testFiles],
+            ...webpackConfig,
+            entry: {
+                ...getEntryObject(webpackConfig.entry),
+                mocha: mochaSetupPath,
+                units: testFiles
+            },
             plugins: createPluginsConfig(webpackConfig.plugins, options)
         })
 
@@ -55,13 +58,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
         closables.push(httpServer)
         console.log(`HTTP server is listening on port ${port}`)
 
-        const browser = await puppeteer.launch({
-            defaultViewport: {
-                width: 1024,
-                height: 768
-            },
-            ...puppeteerConfig
-        })
+        const browser = await puppeteer.launch(puppeteerConfig)
         closables.push(browser)
 
         const [page] = await browser.pages()
@@ -83,14 +80,20 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
     } finally {
         if (!keepOpen) {
             await Promise.all(closables.map(closable => closable.close()))
+            closables.length = 0
         }
     }
 }
 
 function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IRunTestsOptions): webpack.Plugin[] {
     return [
-        ...existingPlugins.filter(p => !isHtmlWebpackPlugin(p)), // filter user's html webpack plugin
-        new HtmlWebpackPlugin(),
+        // filter project's own html webpack plugin
+        ...existingPlugins.filter(p => !isHtmlWebpackPlugin(p)),
+
+        // insert html webpack plugin that targets our own chunks
+        new HtmlWebpackPlugin({ chunks: ['mocha', 'units'] }),
+
+        // inject options to mocha-setup.js (in "static" folder)
         new webpack.DefinePlugin({
             'process.env': {
                 MOCHA_UI: JSON.stringify(options.ui),
@@ -103,11 +106,26 @@ function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IR
 }
 
 function isHtmlWebpackPlugin(plugin: webpack.Plugin): boolean {
-    // we use constuctor name for duck typing
+    // use constuctor name for duck typing, as project might have a different HtmlWebpackPlugin copy
     return plugin && (plugin as any).constructor && (plugin as any).constructor.name === 'HtmlWebpackPlugin'
 }
 
 async function waitForTestResults(page: puppeteer.Page): Promise<number> {
     await page.waitForFunction('mochaStatus.finished')
     return page.evaluate('mochaStatus.failed')
+}
+
+/**
+ * Helper around handling the multi-type entry field of user webpack config.
+ * Converts it to object style, to allow adding additional chunks.
+ */
+function getEntryObject(entry: string | string[] | webpack.Entry | webpack.EntryFunc = {}): webpack.Entry {
+    const entryType = typeof entry
+
+    if (entryType === 'string' || Array.isArray(entry)) {
+        return { main: entry as string | string[] }
+    } else if (entryType === 'object') {
+        return entry as webpack.Entry
+    }
+    throw new Error(`Unsupported "entry" field type (${entryType}) in webpack configuration.`)
 }
