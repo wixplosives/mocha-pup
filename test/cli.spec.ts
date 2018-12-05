@@ -6,13 +6,13 @@ const cliSrcPath = require.resolve('../src/cli.ts')
 const fixturesRoot = join(__dirname, '..', 'fixtures')
 
 const runMochaPup = (...args: string[]) => spawnAsync('node',
-    ['-r', '@ts-tools/node', cliSrcPath, '--no-colors', '-l', ...args],
+    ['-r', '@ts-tools/node', cliSrcPath, '--no-colors', '-l', ...args.map(arg => `"${arg}"`)],
     { cwd: fixturesRoot, shell: true }
 )
 
 describe('mocha-pup', () => {
     it('runs test files specified directly', async () => {
-        const { output, exitCode } = await runMochaPup('./sample.spec.js')
+        const { output, exitCode } = await runMochaPup(`./sample.spec.js`)
 
         expect(output).to.include(`Found 1 test files`)
         expect(output).to.include(`2 passing`)
@@ -20,7 +20,7 @@ describe('mocha-pup', () => {
     })
 
     it('runs test files specified using globs', async () => {
-        const { output, exitCode } = await runMochaPup('"./**/*.spec.js"')
+        const { output, exitCode } = await runMochaPup(`./**/*.spec.js`)
 
         expect(output).to.include(`Found 2 test files`)
         expect(output).to.include(`3 passing`)
@@ -37,7 +37,7 @@ describe('mocha-pup', () => {
     })
 
     it('fails if not finding test files', async () => {
-        const { output, exitCode } = await runMochaPup('"./*.missing.js"')
+        const { output, exitCode } = await runMochaPup(`./*.missing.js`)
 
         expect(output).to.include(`Cannot find any test files`)
         expect(exitCode).to.not.equal(0)
