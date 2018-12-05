@@ -17,13 +17,13 @@ program
     .description(description)
     .usage('[options] <glob ...>')
     .option('-c, --webpack-config <config file>', 'webpack configuration file to bundle with')
-    .option('-d, --dev', 'never-closed, non-headless, open-devtools puppeteer session')
+    .option('-d, --dev', 'never-closed, non-headless, open-devtools, html-reporter session')
     .option('-l, --list-files', 'list found test files')
     .option('-t, --timeout <ms>', 'mocha timeout in ms', 2000)
     .option('-p, --port <number>', 'port to start the http server with', 3000)
-    .option('--reporter <spec/html/dot/...>', 'mocha reporter to use')
+    .option('--reporter <spec/html/dot/...>', 'mocha reporter to use (default: "spec")')
     .option('--ui <bdd|tdd|qunit|exports>', 'mocha user interface', 'bdd')
-    .option('--no-colors', 'turn off colors (default is env detected)')
+    .option('--no-colors', 'turn off colors (default: env detected)')
     .parse(process.argv)
 
 const {
