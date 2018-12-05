@@ -59,7 +59,7 @@ if (listFiles) {
 }
 
 const puppeteerConfig: puppeteer.LaunchOptions = dev ?
-    { defaultViewport: null as any, devtools: true } :
+    { defaultViewport: null, devtools: true } :
     { defaultViewport: { width: 1024, height: 768 } }
 
 // load user's webpack configuration
