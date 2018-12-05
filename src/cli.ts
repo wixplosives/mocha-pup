@@ -47,7 +47,6 @@ for (const arg of args) {
 
 const { length: numFound } = foundFiles
 if (numFound === 0) {
-    program.outputHelp()
     printErrorAndExit(chalk.red(`Cannot find any test files`))
 }
 
