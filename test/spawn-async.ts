@@ -22,6 +22,6 @@ export async function spawnAsync(
             childProcess.stdout.pipe(process.stdout)
             childProcess.stderr.pipe(process.stderr)
         }
-        childProcess.once('exit', exitCode => res({ output: output.join('\n'), exitCode }))
+        childProcess.once('exit', exitCode => res({ output: output.join(), exitCode }))
     })
 }
