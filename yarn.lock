@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@ts-tools/build@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@ts-tools/build/-/build-0.1.1.tgz#8aee84d272fff4bf3c49e13ad57673c69a77acee"
-  integrity sha512-bOT8/akfGQsN/EFkVfAic85W+oGUCyVZ5tK5jhld4hc1SOE6AtyKiyQ5KDpphtLlZyapM6uapZHGFR6WHtf2Xg==
+"@ts-tools/build@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@ts-tools/build/-/build-0.1.2.tgz#4facbf69069f85b1c9c84c5a7b894bb23ef9e6e8"
+  integrity sha512-1cPFGc7g14jqOJkbP3DKLh3IusuEPuI/8SGMB+r8AHVVzvk6k+qCGA1C//r2cH4TQK1MCnLkZNaJ9e4+m1Izhw==
   dependencies:
     "@ts-tools/service" "^0.9.3"
     chalk "^2.4.1"
@@ -204,10 +204,10 @@
     "@types/memory-fs" "*"
     "@types/webpack" "*"
 
-"@types/webpack@*":
-  version "4.4.20"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.20.tgz#b2108461ac00d983ed966b0f781b451d6431a936"
-  integrity sha512-uSVhicDIkh2Phkn0L49eZQb4Ory5q9opiqhjxQGu+onh9mbPEhSF5OuA68dmH240VN1+mavQTmkQ1hqnKZB0gA==
+"@types/webpack@*", "@types/webpack@^4.4.21":
+  version "4.4.21"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.21.tgz#1a80de6d3e465f35067dd2f4533bf6e04c2e7187"
+  integrity sha512-QJfA6GeLSlnx8yyrEQ7fNLYj1MYKzqHlo89skOwnKG4nblpwAyXe9Gcm/eTz/BpX0vBEtiehrSv9b/W9TMkhKg==
   dependencies:
     "@types/anymatch" "*"
     "@types/node" "*"
@@ -401,9 +401,9 @@ agent-base@^4.1.0:
     es6-promisify "^5.0.0"
 
 ajv-errors@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.0.tgz#ecf021fa108fd17dfb5e6b383f2dd233e31ffc59"
-  integrity sha1-7PAh+hCP0X37Xms4Py3SM+Mf/Fk=
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
+  integrity sha512-DCRfO/4nQ+89p/RK43i8Ezd41EqdGIU4ld7nGF8OQ14oc/we5rEntLCUa7+jrn3nn83BosfwZA0wb4pon2o8iQ==
 
 ajv-keywords@^3.1.0:
   version "3.2.0"
