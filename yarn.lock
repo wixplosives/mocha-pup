@@ -31,10 +31,10 @@
   resolved "https://registry.yarnpkg.com/@ts-tools/service/-/service-0.9.3.tgz#98c0c7208d1732cdb1149b0fbb88a059a2dac9f3"
   integrity sha512-4yf0zDtCTorwL3r2bQ4HLCrRe6YkxDxNhC/f3y0WVHWwpB5A/QLUkYcSt+PeSnVYRfMLUWAP0eQwajoMdJQFNg==
 
-"@ts-tools/webpack-loader@^0.7.4":
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/@ts-tools/webpack-loader/-/webpack-loader-0.7.4.tgz#0e356007b42e9fca175a3318d2987d24e93fe50c"
-  integrity sha512-jSgvm2OOOrsuSZKT0pbWa9BqgeEt97JUyNjFxZ3hHS+iw/I2a11k6dMViNlhHjb4EmWufgSd5fOjBYCUQwg+sA==
+"@ts-tools/webpack-loader@^0.7.5":
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/@ts-tools/webpack-loader/-/webpack-loader-0.7.5.tgz#9d32f3c08e9581decba47fd3f7c36b6ec02d70f6"
+  integrity sha512-8X5QUOIqVPY50UzynUkMbPStpDiSkJoh4Tqjd/UCpjhLxeeqPm1vcAGlTyGt9Ld1pkjXSl71wE3l3/h+EtztJA==
   dependencies:
     "@ts-tools/robotrix" "^0.7.2"
     "@ts-tools/service" "^0.9.3"
