@@ -70,7 +70,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
             page.once('pageerror', reject).once('error', reject)
         )
 
-        await page.goto(`http://localhost:${port}`)
+        await page.goto(`http://localhost:${port}/mocha.html`)
 
         const failedCount = await Promise.race([waitForTestResults(page), failsOnPageError])
 
@@ -87,11 +87,10 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
 
 function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IRunTestsOptions): webpack.Plugin[] {
     return [
-        // filter project's own html webpack plugin
-        ...existingPlugins.filter(p => !isHtmlWebpackPlugin(p)),
+        ...existingPlugins,
 
         // insert html webpack plugin that targets our own chunks
-        new HtmlWebpackPlugin({ chunks: ['mocha', 'units'] }),
+        new HtmlWebpackPlugin({ filename: 'mocha.html', title: 'mocha tests', chunks: ['mocha', 'units'] }),
 
         // inject options to mocha-setup.js (in "static" folder)
         new webpack.DefinePlugin({
@@ -103,11 +102,6 @@ function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IR
             }
         })
     ]
-}
-
-function isHtmlWebpackPlugin(plugin: webpack.Plugin): boolean {
-    // use constuctor name for duck typing, as project might have a different HtmlWebpackPlugin copy
-    return plugin && (plugin as any).constructor && (plugin as any).constructor.name === 'HtmlWebpackPlugin'
 }
 
 async function waitForTestResults(page: puppeteer.Page): Promise<number> {
