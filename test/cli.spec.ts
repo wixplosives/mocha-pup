@@ -43,8 +43,29 @@ describe('mocha-pup', () => {
         expect(exitCode).to.not.equal(0)
     })
 
-    it('allows bundling using existing configuration')
-    it('ignores existing html-webpack-plugin in webpack configuration')
-    it('fails when there are bundling errors')
-    it('fails when the page has an error')
+    it('allows bundling using existing webpack configuration', async () => {
+        const { output, exitCode } = await runMochaPup('./typescript-file.ts', '-c', './webpack.config.js')
+
+        expect(output).to.include('Found 1 test files')
+        expect(output).to.include('1 passing')
+        expect(exitCode).to.equal(0)
+    })
+
+    it('fails when there are bundling errors', async () => {
+        const { output, exitCode } = await runMochaPup('./typescript-file.ts')
+
+        expect(output).to.include('Found 1 test files')
+        expect(output).to.include('ERROR in ./typescript-file.ts')
+        expect(output).to.include('Module parse failed: Unexpected token')
+        expect(output).to.include('You may need an appropriate loader to handle this file type')
+        expect(exitCode).to.equal(1)
+    })
+
+    it('fails when the page has an error', async () => {
+        const { output, exitCode } = await runMochaPup('./page-error.js')
+
+        expect(output).to.include('Found 1 test files')
+        expect(output).to.include('Error: outside test')
+        expect(exitCode).to.equal(1)
+    })
 })
