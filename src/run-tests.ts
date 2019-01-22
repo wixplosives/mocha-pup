@@ -105,7 +105,7 @@ function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IR
 }
 
 async function waitForTestResults(page: puppeteer.Page): Promise<number> {
-    await page.waitForFunction('mochaStatus.finished')
+    await page.waitForFunction('mochaStatus.finished', { timeout: 0 })
     return page.evaluate('mochaStatus.failed')
 }
 
