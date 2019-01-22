@@ -6,7 +6,7 @@ const cliSrcPath = require.resolve('../src/cli.ts')
 const fixturesRoot = join(__dirname, '..', 'fixtures')
 
 const runMochaPup = (...args: string[]) => spawnAsync('node',
-    ['-r', '@ts-tools/node', cliSrcPath, '--no-colors', '-l', ...args.map(arg => `"${arg}"`)],
+    ['-r', '@ts-tools/node/r', cliSrcPath, '--no-colors', '-l', ...args.map(arg => `"${arg}"`)],
     { cwd: fixturesRoot, shell: true }
 )
 
