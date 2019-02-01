@@ -14,9 +14,7 @@ export function hookPageConsole(page: puppeteer.Page): void {
     })
 }
 
-type MessageTypeHandlerMap = { [key in puppeteer.ConsoleMessageType]?: (...args: any[]) => void }
-
-const messageTypeToConsoleFn: MessageTypeHandlerMap = {
+const messageTypeToConsoleFn: Record<string, ((...args: any[]) => void) | undefined> = {
     log: console.log,
     warning: console.warn,
     error: console.error,
