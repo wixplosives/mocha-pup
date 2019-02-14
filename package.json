@@ -20,7 +20,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "commander": "^2.19.0",
-    "create-listening-server": "^0.1.1",
+    "create-listening-server": "^0.1.2",
     "css-loader": "^2.1.0",
     "express": "^4.16.4",
     "glob": "^7.1.3",

@@ -1037,10 +1037,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-listening-server@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/create-listening-server/-/create-listening-server-0.1.1.tgz#24b30d6a160261f3ed021148b646f6c6bd6deb0a"
-  integrity sha512-J3JWAQ9c7t4/Ou58vk/DOycsuIA+/szYnx5MYS0Ivo7PRnZXh9fHQZmqs3cDKLvGXeViOeaX2VtS6qd+Y+SpRA==
+create-listening-server@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/create-listening-server/-/create-listening-server-0.1.2.tgz#bc4e1e0adf0ad17cb1d09599bb899b0c1e6aeea4"
+  integrity sha512-74qqb84lbUM+lOI32TX9CY5pzijUwyB1urORGZlH6NTd3SQx18TWdUiQzzJd40ZiAqD5L2+AtlOSd8Gq5K78rQ==
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
@@ -2880,9 +2880,9 @@ promise-inflight@^1.0.1:
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
 proper-fs@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/proper-fs/-/proper-fs-1.1.1.tgz#f713f173d1917c37a4940eea46731c5486923b35"
-  integrity sha512-7kZv/tOTF6C8Zls/LcY+T4mGsve6rz23C0H8iPnqE1rLyowGL75lacTP5YtYCB/5TgI+rUHB4x3GYOXUv3UmDA==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/proper-fs/-/proper-fs-1.1.2.tgz#f2e76615f16f6d12a7f4612504b091cee4196dd1"
+  integrity sha512-0XLDXc0JVz8WYtMLDy5vi0GHAFuM9rzaQWaCMJ7+CWmxOaFNfkdVWqyuxbgb70slQm3Ji12z1oHophyradDN4Q==
 
 proxy-addr@~2.0.4:
   version "2.0.4"
