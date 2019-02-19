@@ -3097,6 +3097,11 @@ progress@^2.0.1:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
+promise-assist@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/promise-assist/-/promise-assist-1.2.3.tgz#2f270dcb165d413ec31cd5a32e0454328ed06063"
+  integrity sha512-dUO4LVqS3m3qJ6jXyOiyhmC2isp25L2E3HKxOHM6ZGlQ90OhKGDBXEvojCwRcNPz2pzpwpEc1bopPq5cxLU3pQ==
+
 promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"

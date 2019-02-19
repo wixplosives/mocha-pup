@@ -1,4 +1,7 @@
 import puppeteer from 'puppeteer'
+import { deferred } from 'promise-assist'
+
+let currentMessage: Promise<void> = Promise.resolve()
 
 /**
  * Hooks the console of a `puppeteer.Page` to Node's console,
@@ -7,9 +10,21 @@ import puppeteer from 'puppeteer'
 export function hookPageConsole(page: puppeteer.Page): void {
     page.on('console', async msg => {
         const consoleFn = messageTypeToConsoleFn[msg.type()]
-        if (consoleFn) {
+        if (!consoleFn) {
+            return
+        }
+
+        const { promise, resolve } = deferred()
+        const previousMessage = currentMessage
+        currentMessage = promise
+        try {
             const msgArgs = await Promise.all(msg.args().map(arg => arg.jsonValue()))
+            await previousMessage
             consoleFn.apply(console, msgArgs)
+        } catch (e) {
+            console.error(e)
+        } finally {
+            resolve()
         }
     })
 }

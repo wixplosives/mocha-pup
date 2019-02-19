@@ -68,4 +68,14 @@ describe('mocha-pup', () => {
         expect(output).to.include('Error: outside test')
         expect(exitCode).to.equal(1)
     })
+
+    it('prints console messages in correct order', async () => {
+        const { output, exitCode } = await runMochaPup('./printer.js')
+
+        expect(output).to.include('###before###')
+        expect(output).to.include('###after###')
+        expect(output.indexOf('###before###'), 'order of messages')
+            .to.be.lessThan(output.indexOf('###after###'))
+        expect(exitCode).to.equal(0)
+    })
 })
