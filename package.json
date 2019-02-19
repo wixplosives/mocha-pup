@@ -53,6 +53,7 @@
   "files": [
     "cjs",
     "src",
+    "!src/tsconfig.json",
     "static"
   ],
   "license": "MIT",
