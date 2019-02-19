@@ -28,7 +28,7 @@
     "promise-assist": "^1.2.3",
     "puppeteer": "^1.12.2",
     "style-loader": "^0.23.1",
-    "webpack-dev-middleware": "^3.5.2"
+    "webpack-dev-middleware": "^3.6.0"
   },
   "devDependencies": {
     "@ts-tools/build": "^0.1.10",
