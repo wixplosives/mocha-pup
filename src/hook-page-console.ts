@@ -1,13 +1,13 @@
 import puppeteer from 'puppeteer'
 import { deferred } from 'promise-assist'
 
-let currentMessage: Promise<void> = Promise.resolve()
-
 /**
  * Hooks the console of a `puppeteer.Page` to Node's console,
  * printing anything from the page in Node.
  */
 export function hookPageConsole(page: puppeteer.Page): void {
+    let currentMessage: Promise<void> = Promise.resolve()
+
     page.on('console', async msg => {
         const consoleFn = messageTypeToConsoleFn[msg.type()]
         if (!consoleFn) {
