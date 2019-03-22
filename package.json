@@ -10,6 +10,8 @@
     "clean": "rimraf ./cjs",
     "prebuild": "yarn clean",
     "build": "ts-build ./src --cjs",
+    "lint": "tslint -p ./tsconfig.base.json",
+    "pretest": "yarn lint",
     "test": "mocha -r @ts-tools/node/r \"./test/**/*.spec.ts\" --watch-extensions ts --timeout 50000",
     "prepack": "yarn build"
   },

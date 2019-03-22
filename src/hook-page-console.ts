@@ -1,32 +1,32 @@
-import puppeteer from 'puppeteer'
-import { deferred } from 'promise-assist'
+import puppeteer from 'puppeteer';
+import { deferred } from 'promise-assist';
 
 /**
  * Hooks the console of a `puppeteer.Page` to Node's console,
  * printing anything from the page in Node.
  */
 export function hookPageConsole(page: puppeteer.Page): void {
-    let currentMessage: Promise<void> = Promise.resolve()
+    let currentMessage: Promise<void> = Promise.resolve();
 
     page.on('console', async msg => {
-        const consoleFn = messageTypeToConsoleFn[msg.type()]
+        const consoleFn = messageTypeToConsoleFn[msg.type()];
         if (!consoleFn) {
-            return
+            return;
         }
 
-        const { promise, resolve } = deferred()
-        const previousMessage = currentMessage
-        currentMessage = promise
+        const { promise, resolve } = deferred();
+        const previousMessage = currentMessage;
+        currentMessage = promise;
         try {
-            const msgArgs = await Promise.all(msg.args().map(arg => arg.jsonValue()))
-            await previousMessage
-            consoleFn.apply(console, msgArgs)
+            const msgArgs = await Promise.all(msg.args().map(arg => arg.jsonValue()));
+            await previousMessage;
+            consoleFn.apply(console, msgArgs);
         } catch (e) {
-            console.error(e)
+            console.error(e);
         } finally {
-            resolve()
+            resolve();
         }
-    })
+    });
 }
 
 const messageTypeToConsoleFn: { [key in puppeteer.ConsoleMessageType]?: ((...args: any[]) => void) | undefined } = {
@@ -50,4 +50,4 @@ const messageTypeToConsoleFn: { [key in puppeteer.ConsoleMessageType]?: ((...arg
 
     // we ignore calls to console.clear, as we don't want the page to clear our terminal
     // clear: console.clear
-}
+};

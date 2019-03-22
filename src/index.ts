@@ -1,1 +1,1 @@
-export * from './run-tests'
+export * from './run-tests';

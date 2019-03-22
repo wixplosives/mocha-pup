@@ -1,6 +1,6 @@
 describe('suite', () => {
     it('should pass', () => {
         // do nothing
-    })
-})
-throw new Error('outside test')
+    });
+});
+throw new Error('outside test');
