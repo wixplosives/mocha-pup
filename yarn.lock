@@ -2884,9 +2884,9 @@ p-locate@^3.0.0:
     p-limit "^2.0.0"
 
 p-try@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.1.0.tgz#c1a0f1030e97de018bb2c718929d2af59463e505"
-  integrity sha512-H2RyIJ7+A3rjkwKC2l5GGtU4H1vkxKCAGsWasNVd0Set+6i4znxbWy6/j16YDPJDWxhsgZiKAstMEP8wCdSpjA==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
+  integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
 pako@~1.0.5:
   version "1.0.10"
@@ -3087,10 +3087,10 @@ progress@^2.0.1:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-promise-assist@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/promise-assist/-/promise-assist-1.2.4.tgz#56f05777c50ae32a9cdbda8b793411de41504d41"
-  integrity sha512-egpwIJtMVaaxEpBrnVxGIN98R8FwZMuaso7QwMlE7f9Yr7K5+Mcn7BSOpUQMTk8FOM2zjGZ5cHmK0rU5iS4kaw==
+promise-assist@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/promise-assist/-/promise-assist-1.2.5.tgz#22ec5f3d5745a74f5d43949cbca530c7bde6f96f"
+  integrity sha512-xjfogH1WrVGQwfWNJPBwaloXkxcMk0VBTzVd6K99z9yjZHx3YnZJDEI2Oz+fKcTnTZsrWNMgXK/VYjvkWcDnog==
 
 promise-inflight@^1.0.1:
   version "1.0.1"
