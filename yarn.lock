@@ -2,16 +2,6 @@
 # yarn lockfile v1
 
 
-"@ts-tools/build@^0.1.10":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@ts-tools/build/-/build-0.1.10.tgz#d8cb34f994e201c31a2d98307bc84cb1b709ea6a"
-  integrity sha512-C3G+vQpws8GrUy9mEmGJ46fUZHH8R3tkv9a7UMech2Vlb+ZGt38WPb8noGt2RMEHvUUiibKzPxl5jgUBSM0YTw==
-  dependencies:
-    "@ts-tools/service" "^2.0.0"
-    chalk "^2.4.2"
-    commander "^2.19.0"
-    proper-fs "^1.1.2"
-
 "@ts-tools/node@^0.9.3":
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.9.3.tgz#31a8149e092f72f9a71c1fd9a28725e62fe9e857"
@@ -60,9 +50,9 @@
   integrity sha512-2Y8uPt0/jwjhQ6EiluT0XCri1Dbplr0ZxfFXUz+ye13gaqE8u5gL5ppao1JrUYr9cIip5S6MvQzBS7Kke7U9VA==
 
 "@types/clean-css@*":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@types/clean-css/-/clean-css-4.2.0.tgz#785749d3ba799ae2cd3efcb3ce622781efd00340"
-  integrity sha512-P+gDCIBAXZ/Q5e9d/Z9Rtn16P5Pr1YIO3gZcY7ZvaQ9ErgmOYtFQlLHZ2P/xcrIyN8TEZrI03EZmdmv1154sjA==
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@types/clean-css/-/clean-css-4.2.1.tgz#cb0134241ec5e6ede1b5344bc829668fd9871a8d"
+  integrity sha512-A1HQhQ0hkvqqByJMgg+Wiv9p9XdoYEzuwm11SVo1mX2/4PSdhjcrUlilJQoqLscIheC51t1D5g+EFWCXZ2VTQQ==
   dependencies:
     "@types/node" "*"
 
@@ -150,9 +140,9 @@
   integrity sha512-1axi39YdtBI7z957vdqXI4Ac25e7YihYQtJa+Clnxg1zTJEaIRbndt71O3sP4GAMgiAm0pY26/b9BrY4MR/PMw==
 
 "@types/node@*":
-  version "11.12.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.12.1.tgz#d90123f6c61fdf2f7cddd286ddae891586dd3488"
-  integrity sha512-sKDlqv6COJrR7ar0+GqqhrXQDzQlMcqMnF2iEU6m9hLo8kxozoAGUazwPyELHlRVmjsbvlnGXjnzyptSXVmceA==
+  version "11.12.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.12.2.tgz#d7f302e74b10e9801d52852137f652d9ee235da8"
+  integrity sha512-c82MtnqWB/CqqK7/zit74Ob8H1dBdV7bK+BcErwtXbe0+nUGkgzq5NTDmRW/pAv2lFtmeNmW95b0zK2hxpeklg==
 
 "@types/node@8":
   version "8.10.45"
@@ -3097,20 +3087,15 @@ progress@^2.0.1:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-promise-assist@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/promise-assist/-/promise-assist-1.2.3.tgz#2f270dcb165d413ec31cd5a32e0454328ed06063"
-  integrity sha512-dUO4LVqS3m3qJ6jXyOiyhmC2isp25L2E3HKxOHM6ZGlQ90OhKGDBXEvojCwRcNPz2pzpwpEc1bopPq5cxLU3pQ==
+promise-assist@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/promise-assist/-/promise-assist-1.2.4.tgz#56f05777c50ae32a9cdbda8b793411de41504d41"
+  integrity sha512-egpwIJtMVaaxEpBrnVxGIN98R8FwZMuaso7QwMlE7f9Yr7K5+Mcn7BSOpUQMTk8FOM2zjGZ5cHmK0rU5iS4kaw==
 
 promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
-
-proper-fs@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/proper-fs/-/proper-fs-1.1.2.tgz#f2e76615f16f6d12a7f4612504b091cee4196dd1"
-  integrity sha512-0XLDXc0JVz8WYtMLDy5vi0GHAFuM9rzaQWaCMJ7+CWmxOaFNfkdVWqyuxbgb70slQm3Ji12z1oHophyradDN4Q==
 
 proxy-addr@~2.0.4:
   version "2.0.4"
@@ -3875,10 +3860,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@~3.3.4000:
-  version "3.3.4000"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.4000.tgz#76b0f89cfdbf97827e1112d64f283f1151d6adf0"
-  integrity sha512-jjOcCZvpkl2+z7JFn0yBOoLQyLoIkNZAs/fYJkUG6VKy6zLPHJGfQJYFHzibB6GJaF/8QrcECtlQ5cpvRHSMEA==
+typescript@~3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.1.tgz#b6691be11a881ffa9a05765a205cb7383f3b63c6"
+  integrity sha512-3NSMb2VzDQm8oBTLH6Nj55VVtUEpe/rgkIzMir0qVoLyjDZlnMBva0U6vDiV3IH+sl/Yu6oP5QwsAQtHPmDd2Q==
 
 uglify-js@3.4.x:
   version "3.4.10"
