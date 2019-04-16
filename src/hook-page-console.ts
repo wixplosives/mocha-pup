@@ -46,7 +46,7 @@ const messageTypeToConsoleFn: { [key in puppeteer.ConsoleMessageType]?: ((...arg
     endGroup: console.groupEnd,
     table: console.table,
     count: console.count,
-    timeEnd: console.timeEnd,
+    timeEnd: console.timeEnd
 
     // we ignore calls to console.clear, as we don't want the page to clear our terminal
     // clear: console.clear

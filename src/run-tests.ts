@@ -98,7 +98,7 @@ function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IR
                 MOCHA_UI: JSON.stringify(options.ui),
                 MOCHA_COLORS: options.colors,
                 MOCHA_REPORTER: JSON.stringify(options.reporter),
-                MOCHA_TIMEOUT: options.timeout,
+                MOCHA_TIMEOUT: options.timeout
             }
         })
     ];

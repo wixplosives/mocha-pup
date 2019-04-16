@@ -6,6 +6,7 @@ import glob from 'glob';
 import webpack from 'webpack';
 import puppeteer from 'puppeteer';
 import chalk from 'chalk';
+import findUp from 'find-up';
 import { runTests } from './run-tests';
 
 const { version, description } = require('../package.json');
@@ -28,7 +29,7 @@ program
 
 const {
     args,
-    webpackConfig: webpackConfigPath,
+    webpackConfig: webpackConfigPath = findUp.sync('webpack.config.js'),
     dev,
     listFiles,
     colors,
@@ -57,9 +58,9 @@ if (listFiles) {
     }
 }
 
-const puppeteerConfig: puppeteer.LaunchOptions = dev ?
-    { defaultViewport: null, devtools: true } :
-    { defaultViewport: { width: 1024, height: 768 } };
+const puppeteerConfig: puppeteer.LaunchOptions = dev
+    ? { defaultViewport: null, devtools: true }
+    : { defaultViewport: { width: 1024, height: 768 } };
 
 // load user's webpack configuration
 const webpackConfig: webpack.Configuration = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {};

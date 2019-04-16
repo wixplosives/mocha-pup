@@ -85,6 +85,11 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/find-up@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@types/find-up/-/find-up-2.1.1.tgz#1cd2d240f1ad1f48d32346074724dc3107248a11"
+  integrity sha512-60LC501bQRN9/3yfVaEEMd7IndaufffL56PBRAejPpUrY304Ps1jfnjNqPw5jmM5R8JHWiKBAe5IHzNcPV41AA==
+
 "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
