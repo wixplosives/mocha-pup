@@ -3,14 +3,10 @@ import chalk from 'chalk';
 import puppeteer from 'puppeteer';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import { safeListeningHttpServer } from 'create-listening-server';
 import { hookPageConsole } from './hook-page-console';
-
-// until the following two are fixed:
-// https://github.com/jantimon/html-webpack-plugin/issues/1243
-// https://github.com/jantimon/html-webpack-plugin/issues/1244
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const mochaSetupPath = require.resolve('../static/mocha-setup.js');
 
