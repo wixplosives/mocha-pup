@@ -35,8 +35,8 @@
     "webpack-dev-middleware": "^3.7.0"
   },
   "devDependencies": {
-    "@ts-tools/node": "^0.9.8",
-    "@ts-tools/webpack-loader": "^0.8.12",
+    "@ts-tools/node": "^0.9.9",
+    "@ts-tools/webpack-loader": "^0.8.13",
     "@types/chai": "^4.1.7",
     "@types/express": "^4.17.0",
     "@types/glob": "^7.1.1",
@@ -51,7 +51,7 @@
     "rimraf": "^2.6.3",
     "tslint": "^5.18.0",
     "typescript": "~3.5.3",
-    "webpack": "^4.39.0"
+    "webpack": "^4.39.1"
   },
   "files": [
     "cjs",
