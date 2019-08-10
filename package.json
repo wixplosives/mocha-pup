@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "commander": "^2.20.0",
+    "commander": "^3.0.0",
     "create-listening-server": "^0.1.2",
     "css-loader": "^3.2.0",
     "express": "^4.17.1",
@@ -35,8 +35,8 @@
     "webpack-dev-middleware": "^3.7.0"
   },
   "devDependencies": {
-    "@ts-tools/node": "^0.9.9",
-    "@ts-tools/webpack-loader": "^0.8.13",
+    "@ts-tools/node": "^0.9.10",
+    "@ts-tools/webpack-loader": "^0.8.14",
     "@types/chai": "^4.2.0",
     "@types/express": "^4.17.0",
     "@types/glob": "^7.1.1",
