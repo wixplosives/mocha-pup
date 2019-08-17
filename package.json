@@ -44,7 +44,7 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "8",
     "@types/puppeteer": "^1.19.1",
-    "@types/webpack": "^4.32.1",
+    "@types/webpack": "^4.32.2",
     "@types/webpack-dev-middleware": "^2.0.3",
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
