@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "commander": "^3.0.0",
+    "commander": "^3.0.1",
     "create-listening-server": "^0.1.2",
     "css-loader": "^3.2.0",
     "express": "^4.17.1",
@@ -32,12 +32,12 @@
     "promise-assist": "^1.2.6",
     "puppeteer": "^1.19.0",
     "style-loader": "^1.0.0",
-    "webpack-dev-middleware": "^3.7.0"
+    "webpack-dev-middleware": "^3.7.1"
   },
   "devDependencies": {
     "@ts-tools/node": "^0.9.10",
     "@ts-tools/webpack-loader": "^0.8.14",
-    "@types/chai": "^4.2.0",
+    "@types/chai": "^4.2.2",
     "@types/express": "^4.17.1",
     "@types/glob": "^7.1.1",
     "@types/html-minifier": "^3.5.3",
@@ -49,7 +49,7 @@
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
     "rimraf": "^3.0.0",
-    "tslint": "^5.19.0",
+    "tslint": "^5.20.0",
     "typescript": "~3.6.2",
     "webpack": "^4.39.3"
   },
