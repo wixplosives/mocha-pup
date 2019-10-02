@@ -12,7 +12,9 @@ const runMochaPup = (options: { args: string[]; fixture?: string }) =>
         { cwd: resolve(fixturesRoot, options.fixture || '.'), shell: true }
     );
 
-describe('mocha-pup', () => {
+describe('mocha-pup', function() {
+    this.timeout(10_000);
+
     it('runs test files specified directly', async () => {
         const { output, exitCode } = await runMochaPup({ args: ['./sample.spec.js'] });
 

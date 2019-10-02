@@ -3,17 +3,18 @@
   "description": "Run mocha tests in Chrome, using webpack and puppeteer.",
   "version": "0.1.18",
   "main": "cjs/index.js",
+  "types": "cjs/index.d.ts",
   "bin": {
     "mocha-pup": "cjs/cli.js"
   },
   "scripts": {
     "clean": "rimraf ./cjs",
     "prebuild": "yarn clean",
-    "build": "tsc -p src",
+    "build": "tsc -p tsconfig.build.json",
     "pretest": "yarn lint && yarn typecheck",
-    "test": "mocha -r @ts-tools/node/r \"./test/**/*.spec.ts\" --watch-extensions ts --timeout 50000",
-    "lint": "tslint -p ./tsconfig.base.json",
-    "typecheck": "tsc -p src --noEmit && tsc -p test --noEmit",
+    "test": "mocha \"./test/**/*.spec.ts\"",
+    "lint": "tslint -p ./tsconfig.json",
+    "typecheck": "tsc --noEmit",
     "prepack": "yarn build"
   },
   "peerDependencies": {
@@ -22,7 +23,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "commander": "^3.0.1",
+    "commander": "^3.0.2",
     "create-listening-server": "^0.1.2",
     "css-loader": "^3.2.0",
     "express": "^4.17.1",
@@ -32,31 +33,30 @@
     "promise-assist": "^1.2.6",
     "puppeteer": "^1.20.0",
     "style-loader": "^1.0.0",
-    "webpack-dev-middleware": "^3.7.1"
+    "webpack-dev-middleware": "^3.7.2"
   },
   "devDependencies": {
-    "@ts-tools/node": "^0.9.10",
-    "@ts-tools/webpack-loader": "^0.8.14",
-    "@types/chai": "^4.2.2",
+    "@ts-tools/node": "^1.0.0",
+    "@ts-tools/webpack-loader": "^1.0.0",
+    "@types/chai": "^4.2.3",
     "@types/express": "^4.17.1",
     "@types/glob": "^7.1.1",
     "@types/html-minifier": "^3.5.3",
     "@types/mocha": "^5.2.7",
     "@types/node": "8",
-    "@types/puppeteer": "^1.19.1",
-    "@types/webpack": "^4.39.1",
+    "@types/puppeteer": "^1.20.0",
+    "@types/webpack": "^4.39.2",
     "@types/webpack-dev-middleware": "^2.0.3",
     "chai": "^4.2.0",
-    "mocha": "^6.2.0",
+    "mocha": "^6.2.1",
     "rimraf": "^3.0.0",
     "tslint": "^5.20.0",
     "typescript": "~3.6.3",
-    "webpack": "^4.40.2"
+    "webpack": "^4.41.0"
   },
   "files": [
     "cjs",
     "src",
-    "!src/tsconfig.json",
     "static"
   ],
   "license": "MIT",
