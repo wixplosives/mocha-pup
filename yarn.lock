@@ -1027,10 +1027,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-listening-server@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/create-listening-server/-/create-listening-server-0.1.2.tgz#bc4e1e0adf0ad17cb1d09599bb899b0c1e6aeea4"
-  integrity sha512-74qqb84lbUM+lOI32TX9CY5pzijUwyB1urORGZlH6NTd3SQx18TWdUiQzzJd40ZiAqD5L2+AtlOSd8Gq5K78rQ==
+create-listening-server@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/create-listening-server/-/create-listening-server-1.0.0.tgz#d33d93a8a71b613bb937ab27a54a82b0f6079661"
+  integrity sha512-Nb94WAhopCcWAmCzlAy+rJ8lsCojeZP/1YLcReOdsi5i9mXgC+TDKAjZQYMmEvlEGq/qKvt44EdH9RAxEMRr6A==
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
