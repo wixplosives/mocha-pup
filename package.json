@@ -11,7 +11,7 @@
     "clean": "rimraf ./cjs",
     "prebuild": "yarn clean",
     "build": "tsc -p tsconfig.build.json",
-    "pretest": "yarn lint && yarn typecheck",
+    "pretest": "yarn typecheck && yarn lint",
     "test": "mocha \"./test/**/*.spec.ts\"",
     "lint": "tslint -p ./tsconfig.json",
     "typecheck": "tsc --noEmit",
