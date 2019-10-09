@@ -9,6 +9,7 @@ import chalk from 'chalk';
 import findUp from 'find-up';
 import { runTests } from './run-tests';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { version, description } = require('../package.json');
 
 process.on('unhandledRejection', printErrorAndExit);
