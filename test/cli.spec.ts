@@ -79,7 +79,7 @@ describe('mocha-pup', function() {
     });
 
     it('fails when the page has an error', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./page-error.js'] });
+        const { output, exitCode } = await runMochaPup({ args: ['./page-error-throw.js'] });
 
         expect(output).to.include('Found 1 test files');
         expect(output).to.include('Error: outside test');
@@ -92,6 +92,14 @@ describe('mocha-pup', function() {
         expect(output).to.include('###before###');
         expect(output).to.include('###after###');
         expect(output.indexOf('###before###'), 'order of messages').to.be.lessThan(output.indexOf('###after###'));
+        expect(exitCode).to.equal(0);
+    });
+
+    it('prints errors printed using console.log', async () => {
+        const { output, exitCode } = await runMochaPup({ args: ['./page-error-console.js'] });
+
+        expect(output).to.include('Found 1 test files');
+        expect(output).to.include('Error: printed to log');
         expect(exitCode).to.equal(0);
     });
 });

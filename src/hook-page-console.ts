@@ -18,7 +18,7 @@ export function hookPageConsole(page: puppeteer.Page): void {
         const previousMessage = currentMessage;
         currentMessage = promise;
         try {
-            const msgArgs = await Promise.all(msg.args().map(arg => arg.jsonValue()));
+            const msgArgs = await Promise.all(msg.args().map(arg => extractErrorMessage(arg) || arg.jsonValue()));
             await previousMessage;
             consoleFn.apply(console, msgArgs);
         } catch (e) {
@@ -51,3 +51,9 @@ const messageTypeToConsoleFn: { [key in puppeteer.ConsoleMessageType]?: ((...arg
     // we ignore calls to console.clear, as we don't want the page to clear our terminal
     // clear: console.clear
 };
+
+// workaround to get hidden description
+// jsonValue() on errors returns {}
+function extractErrorMessage(arg: any): string | undefined {
+    return arg?._remoteObject?.subtype === 'error' ? arg._remoteObject.description : undefined;
+}
