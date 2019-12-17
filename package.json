@@ -15,6 +15,7 @@
     "test": "mocha \"./test/**/*.spec.ts\"",
     "lint": "eslint . --ext .ts,.tsx -f codeframe",
     "typecheck": "tsc --noEmit",
+    "mocha-pup": "node -r @ts-tools/node/r ./src/cli.ts",
     "prepack": "yarn build"
   },
   "peerDependencies": {
