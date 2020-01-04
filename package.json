@@ -19,7 +19,7 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "mocha": ">=6",
+    "mocha": ">=7",
     "puppeteer": ">=1",
     "webpack": ">=4"
   },

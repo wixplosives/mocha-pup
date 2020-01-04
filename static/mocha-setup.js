@@ -6,7 +6,7 @@ require('!style-loader!css-loader!mocha/mocha.css');
 // env variables injected via webpack.DefinePlugin
 const ui = process.env.MOCHA_UI;
 const reporter = process.env.MOCHA_REPORTER || 'spec';
-const useColors = process.env.MOCHA_COLORS;
+const color = process.env.MOCHA_COLORS;
 const timeout = process.env.MOCHA_TIMEOUT || 2000;
 
 // html reporter needs a container
@@ -16,18 +16,21 @@ if (reporter === 'html') {
     document.body.appendChild(mochaContainer);
 }
 
-mocha.setup({ui, reporter, useColors, timeout});
+mocha.setup({ ui, reporter, color, timeout });
 
-// save test status on window to access it with puppeteer
-const mochaStatus = window.mochaStatus = {
+const mochaStatus = {
     completed: 0,
     failed: 0,
     finished: false
 };
 
+// save test status on window to access it with puppeteer
+window.mochaStatus = mochaStatus;
+
 window.addEventListener('DOMContentLoaded', () => {
-    mocha.run()
+    mocha
+        .run()
         .on('test end', () => mochaStatus.completed++)
         .on('fail', () => mochaStatus.failed++)
-        .on('end', () => mochaStatus.finished = true);
+        .on('end', () => (mochaStatus.finished = true));
 });
