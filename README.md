@@ -1,5 +1,5 @@
 # mocha-pup
-[![Build Status](https://github.com/wixplosives/mocha-pup/workflows/CI/badge.svg)](https://github.com/wixplosives/mocha-pup/actions)
+[![Build Status](https://github.com/wixplosives/mocha-pup/workflows/tests/badge.svg)](https://github.com/wixplosives/mocha-pup/actions)
 [![npm version](https://img.shields.io/npm/v/mocha-pup.svg)](https://www.npmjs.com/package/mocha-pup)
 
 Run mocha tests in Chrome, using webpack and puppeteer.
