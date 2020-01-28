@@ -3,14 +3,6 @@ name: tests
 on: [push]
 
 jobs:
-  info:
-    runs-on: windows-latest
-    steps:
-    - name: Check OS Version
-      run: |
-        Get-ComputerInfo -Property Windows*
-        systeminfo /fo csv | ConvertFrom-Csv | select Hotfix* | Format-List
-      shell: pwsh
   tests:
     name: node ${{ matrix.node_version }} / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
