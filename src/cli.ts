@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const wtf = require('wtfnode');
 import path from 'path';
 import program from 'commander';
 import glob from 'glob';
@@ -80,7 +82,9 @@ runTests(foundFiles, {
     reporter: reporter || defaultReporter,
     timeout,
     ui
-}).catch(printErrorAndExit);
+})
+    .then(() => wtf.dump())
+    .catch(printErrorAndExit);
 
 function printErrorAndExit(message: unknown) {
     console.error(message);

@@ -4428,6 +4428,11 @@ ws@^6.1.0:
   dependencies:
     async-limiter "~1.0.0"
 
+wtfnode@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/wtfnode/-/wtfnode-0.8.1.tgz#d16593ae9b39b252dff6931f95569d9365162389"
+  integrity sha512-S7S7D8CGHVCtlTn1IWX+nEbxavpL9+fk3vk02RPZHiExyZFb9oKTTig3nEnMCL2yaJ4047V5lAkuulXuO2OsOw==
+
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
