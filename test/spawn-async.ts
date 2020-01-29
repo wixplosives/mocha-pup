@@ -10,10 +10,7 @@ export async function spawnAsync(command: string, args: ReadonlyArray<string> = 
         const output: Array<string | Buffer> = [];
         childProcess.once('error', rej);
 
-        const captureOutput = (chunk: string | Buffer) => {
-            console.log(chunk.toString());
-            output.push(chunk);
-        };
+        const captureOutput = output.push.bind(output);
         childProcess.stdout.on('data', captureOutput);
         childProcess.stderr.on('data', captureOutput);
 

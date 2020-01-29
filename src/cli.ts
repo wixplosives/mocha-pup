@@ -60,8 +60,8 @@ if (listFiles) {
 }
 
 const puppeteerConfig: puppeteer.LaunchOptions = dev
-    ? { defaultViewport: null, devtools: true, pipe: true }
-    : { defaultViewport: { width: 1024, height: 768 }, pipe: true };
+    ? { pipe: true, defaultViewport: null, devtools: true }
+    : { pipe: true, defaultViewport: { width: 1024, height: 768 } };
 
 // load user's webpack configuration
 const webpackConfig: webpack.Configuration = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {};
