@@ -1,3 +1,5 @@
+require('wtfnode');
+
 import path from 'path';
 import program from 'commander';
 import glob from 'glob';
