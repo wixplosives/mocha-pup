@@ -5,12 +5,15 @@ import { expect } from 'chai';
 const cliSrcPath = require.resolve('../src/cli.ts');
 const fixturesRoot = join(__dirname, '..', 'fixtures');
 
-const runMochaPup = (options: { args: string[]; fixture?: string }) =>
-    spawnSync(
+const runMochaPup = (options: { args: string[]; fixture?: string }) => {
+    const cliProcess = spawnSync(
         'node',
         ['-r', '@ts-tools/node/r', cliSrcPath, '--no-colors', '-l', ...options.args.map((arg) => `"${arg}"`)],
         { cwd: resolve(fixturesRoot, options.fixture || '.'), shell: true, encoding: 'utf8' }
     );
+    console.log(cliProcess.output.join(''));
+    return cliProcess;
+};
 
 describe('mocha-pup', function () {
     this.timeout(20_000);

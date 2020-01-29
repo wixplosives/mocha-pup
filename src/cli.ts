@@ -80,7 +80,9 @@ runTests(foundFiles, {
     reporter: reporter || defaultReporter,
     timeout,
     ui,
-}).catch(printErrorAndExit);
+})
+    .then(() => require('wtfnode').dump())
+    .catch(printErrorAndExit);
 
 function printErrorAndExit(message: unknown) {
     console.error(message);
