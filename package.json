@@ -9,14 +9,14 @@
   },
   "scripts": {
     "clean": "rimraf ./cjs",
-    "prebuild": "yarn clean",
+    "prebuild": "npm run clean",
     "build": "tsc -p tsconfig.build.json",
-    "pretest": "yarn typecheck && yarn lint",
+    "pretest": "npm run typecheck && npm run lint",
     "test": "mocha \"./test/**/*.spec.ts\"",
     "lint": "eslint . --ext .ts,.tsx -f codeframe",
     "typecheck": "tsc --noEmit",
     "mocha-pup": "node -r @ts-tools/node/r ./src/cli.ts",
-    "prepack": "yarn build"
+    "prepack": "npm run build"
   },
   "peerDependencies": {
     "mocha": ">=7",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "chalk": "^3.0.0",
-    "commander": "^4.1.0",
+    "commander": "^4.1.1",
     "create-listening-server": "^1.0.0",
     "css-loader": "^3.4.2",
     "express": "^4.17.1",
@@ -46,10 +46,10 @@
     "@types/mocha": "^7.0.1",
     "@types/node": "8",
     "@types/puppeteer": "^2.0.0",
-    "@types/webpack": "^4.41.3",
+    "@types/webpack": "^4.41.5",
     "@types/webpack-dev-middleware": "^2.0.3",
-    "@typescript-eslint/eslint-plugin": "^2.18.0",
-    "@typescript-eslint/parser": "^2.18.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",

@@ -8,7 +8,7 @@ Run mocha tests in Chrome, using webpack and puppeteer.
 
 Install `mocha-pup` as a dev dependency:
 ```
-yarn add mocha-pup --dev
+npm i mocha-pup --save-dev
 ```
 
 ## Usage
