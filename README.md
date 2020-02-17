@@ -1,4 +1,5 @@
 # mocha-pup
+
 [![Build Status](https://github.com/wixplosives/mocha-pup/workflows/tests/badge.svg)](https://github.com/wixplosives/mocha-pup/actions)
 [![npm version](https://img.shields.io/npm/v/mocha-pup.svg)](https://www.npmjs.com/package/mocha-pup)
 
@@ -7,6 +8,7 @@ Run mocha tests in Chrome, using webpack and puppeteer.
 ## Installation
 
 Install `mocha-pup` as a dev dependency:
+
 ```
 npm i mocha-pup --save-dev
 ```
@@ -14,14 +16,16 @@ npm i mocha-pup --save-dev
 ## Usage
 
 A CLI named `mocha-pup` is available after installation:
+
 ```
 mocha-pup [options] <glob ...>
 ```
 
 For example:
+
 ```
-mocha-pup "test/**/*.spec.js" 
-mocha-pup "test/**/*.spec.ts" -c webpack.config.js 
+mocha-pup "test/**/*.spec.js"
+mocha-pup "test/**/*.spec.ts" -c webpack.config.js
 ```
 
 ## CLI Options
