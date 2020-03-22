@@ -102,4 +102,12 @@ describe('mocha-pup', function() {
         expect(stdout).to.include('Error: printed to log');
         expect(status).to.equal(0);
     });
+
+    it('serves assets in working directory', () => {
+        const { stdout, status } = runMochaPup({ fixture: 'asset', args: ['./asset.test.js'] });
+
+        expect(stdout).to.include('Found 1 test files');
+        expect(stdout).to.include('1 passing');
+        expect(status).to.equal(0);
+    });
 });

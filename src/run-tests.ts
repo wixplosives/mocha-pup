@@ -69,6 +69,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
         }
         const app = express();
         app.use(devMiddleware);
+        app.use(express.static(compiler.options.context || process.cwd()));
 
         const { httpServer, port } = await safeListeningHttpServer(preferredPort, app);
         closables.push(httpServer);
