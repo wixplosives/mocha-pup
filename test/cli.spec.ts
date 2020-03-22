@@ -1,105 +1,105 @@
-import { expect } from 'chai';
 import { join, resolve } from 'path';
-import { spawnAsync } from './spawn-async';
+import { spawnSync } from 'child_process';
+import { expect } from 'chai';
 
 const cliSrcPath = require.resolve('../src/cli.ts');
 const fixturesRoot = join(__dirname, '..', 'fixtures');
 
 const runMochaPup = (options: { args: string[]; fixture?: string }) =>
-    spawnAsync(
+    spawnSync(
         'node',
         ['-r', '@ts-tools/node/r', cliSrcPath, '--no-colors', '-l', ...options.args.map(arg => `"${arg}"`)],
-        { cwd: resolve(fixturesRoot, options.fixture || '.'), shell: true }
+        { cwd: resolve(fixturesRoot, options.fixture || '.'), shell: true, encoding: 'utf8' }
     );
 
 describe('mocha-pup', function() {
     this.timeout(20_000);
 
-    it('runs test files specified directly', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./sample.spec.js'] });
+    it('runs test files specified directly', () => {
+        const { stdout, status } = runMochaPup({ args: ['./sample.spec.js'] });
 
-        expect(output).to.include('Found 1 test files');
-        expect(output).to.include('2 passing');
-        expect(exitCode).to.equal(0);
+        expect(stdout).to.include('Found 1 test files');
+        expect(stdout).to.include('2 passing');
+        expect(status).to.equal(0);
     });
 
-    it('runs test files specified using globs', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./**/*.spec.js'] });
+    it('runs test files specified using globs', () => {
+        const { stdout, status } = runMochaPup({ args: ['./**/*.spec.js'] });
 
-        expect(output).to.include('Found 2 test files');
-        expect(output).to.include('3 passing');
-        expect(exitCode).to.equal(0);
+        expect(stdout).to.include('Found 2 test files');
+        expect(stdout).to.include('3 passing');
+        expect(status).to.equal(0);
     });
 
-    it('fails when there are test errors', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./should-fail.unit.js'] });
+    it('fails when there are test errors', () => {
+        const { stdout, stderr, status } = runMochaPup({ args: ['./should-fail.unit.js'] });
 
-        expect(output).to.include('1 tests failed');
-        expect(output).to.include('some error message');
-        expect(exitCode).to.not.equal(0);
+        expect(stdout).to.include('some error message');
+        expect(stderr).to.include('1 tests failed');
+        expect(status).to.not.equal(0);
     });
 
-    it('fails if not finding test files', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./*.missing.js'] });
+    it('fails if not finding test files', () => {
+        const { stderr, status } = runMochaPup({ args: ['./*.missing.js'] });
 
-        expect(output).to.include('Cannot find any test files');
-        expect(exitCode).to.not.equal(0);
+        expect(stderr).to.include('Cannot find any test files');
+        expect(status).to.not.equal(0);
     });
 
-    it('automatically finds and uses webpack.config.js', async () => {
-        const { output, exitCode } = await runMochaPup({
+    it('automatically finds and uses webpack.config.js', () => {
+        const { stdout, status } = runMochaPup({
             args: ['./typescript-file.ts'],
             fixture: 'with-config'
         });
 
-        expect(output).to.include('Found 1 test files');
-        expect(output).to.include('1 passing');
-        expect(exitCode).to.equal(0);
+        expect(stdout).to.include('Found 1 test files');
+        expect(stdout).to.include('1 passing');
+        expect(status).to.equal(0);
     });
 
-    it('allows bundling using custom webpack configuration', async () => {
-        const { output, exitCode } = await runMochaPup({
+    it('allows bundling using custom webpack configuration', () => {
+        const { stdout, status } = runMochaPup({
             args: ['./typescript-file.ts', '-c', './my.config.js'],
             fixture: 'custom-config'
         });
 
-        expect(output).to.include('Found 1 test files');
-        expect(output).to.include('1 passing');
-        expect(exitCode).to.equal(0);
+        expect(stdout).to.include('Found 1 test files');
+        expect(stdout).to.include('1 passing');
+        expect(status).to.equal(0);
     });
 
-    it('fails when there are bundling errors', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./typescript-file.ts'], fixture: 'custom-config' });
+    it('fails when there are bundling errors', () => {
+        const { stdout, stderr, status } = runMochaPup({ args: ['./typescript-file.ts'], fixture: 'custom-config' });
 
-        expect(output).to.include('Found 1 test files');
-        expect(output).to.include('ERROR in ./typescript-file.ts');
-        expect(output).to.include('Module parse failed: Unexpected token');
-        expect(output).to.include('You may need an appropriate loader to handle this file type');
-        expect(exitCode).to.equal(1);
+        expect(stdout).to.include('Found 1 test files');
+        expect(stderr).to.include('ERROR in ./typescript-file.ts');
+        expect(stderr).to.include('Module parse failed: Unexpected token');
+        expect(stderr).to.include('You may need an appropriate loader to handle this file type');
+        expect(status).to.equal(1);
     });
 
-    it('fails when the page has an error', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./page-error-throw.js'] });
+    it('fails when the page has an error', () => {
+        const { stdout, stderr, status } = runMochaPup({ args: ['./page-error-throw.js'] });
 
-        expect(output).to.include('Found 1 test files');
-        expect(output).to.include('Error: outside test');
-        expect(exitCode).to.equal(1);
+        expect(stdout).to.include('Found 1 test files');
+        expect(stderr).to.include('Error: outside test');
+        expect(status).to.equal(1);
     });
 
-    it('prints console messages in correct order', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./printer.js'] });
+    it('prints console messages in correct order', () => {
+        const { stdout, status } = runMochaPup({ args: ['./printer.js'] });
 
-        expect(output).to.include('###before###');
-        expect(output).to.include('###after###');
-        expect(output.indexOf('###before###'), 'order of messages').to.be.lessThan(output.indexOf('###after###'));
-        expect(exitCode).to.equal(0);
+        expect(stdout).to.include('###before###');
+        expect(stdout).to.include('###after###');
+        expect(stdout.indexOf('###before###'), 'order of messages').to.be.lessThan(stdout.indexOf('###after###'));
+        expect(status).to.equal(0);
     });
 
-    it('prints errors printed using console.log', async () => {
-        const { output, exitCode } = await runMochaPup({ args: ['./page-error-console.js'] });
+    it('prints errors printed using console.log', () => {
+        const { stdout, status } = runMochaPup({ args: ['./page-error-console.js'] });
 
-        expect(output).to.include('Found 1 test files');
-        expect(output).to.include('Error: printed to log');
-        expect(exitCode).to.equal(0);
+        expect(stdout).to.include('Found 1 test files');
+        expect(stdout).to.include('Error: printed to log');
+        expect(status).to.equal(0);
     });
 });
