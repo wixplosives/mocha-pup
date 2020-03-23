@@ -8,11 +8,11 @@ const fixturesRoot = join(__dirname, '..', 'fixtures');
 const runMochaPup = (options: { args: string[]; fixture?: string }) =>
     spawnSync(
         'node',
-        ['-r', '@ts-tools/node/r', cliSrcPath, '--no-colors', '-l', ...options.args.map(arg => `"${arg}"`)],
+        ['-r', '@ts-tools/node/r', cliSrcPath, '--no-colors', '-l', ...options.args.map((arg) => `"${arg}"`)],
         { cwd: resolve(fixturesRoot, options.fixture || '.'), shell: true, encoding: 'utf8' }
     );
 
-describe('mocha-pup', function() {
+describe('mocha-pup', function () {
     this.timeout(20_000);
 
     it('runs test files specified directly', () => {
@@ -49,7 +49,7 @@ describe('mocha-pup', function() {
     it('automatically finds and uses webpack.config.js', () => {
         const { stdout, status } = runMochaPup({
             args: ['./typescript-file.ts'],
-            fixture: 'with-config'
+            fixture: 'with-config',
         });
 
         expect(stdout).to.include('Found 1 test files');
@@ -60,7 +60,7 @@ describe('mocha-pup', function() {
     it('allows bundling using custom webpack configuration', () => {
         const { stdout, status } = runMochaPup({
             args: ['./typescript-file.ts', '-c', './my.config.js'],
-            fixture: 'custom-config'
+            fixture: 'custom-config',
         });
 
         expect(stdout).to.include('Found 1 test files');

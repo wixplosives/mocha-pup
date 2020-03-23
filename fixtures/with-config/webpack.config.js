@@ -2,11 +2,11 @@ exports.module = {
     rules: [
         {
             test: /\.tsx?$/,
-            loader: '@ts-tools/webpack-loader'
-        }
-    ]
+            loader: '@ts-tools/webpack-loader',
+        },
+    ],
 };
 
 exports.resolve = {
-    extensions: ['.ts', '.tsx', '.mjs', '.js', '.json']
+    extensions: ['.ts', '.tsx', '.mjs', '.js', '.json'],
 };

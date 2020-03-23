@@ -21,7 +21,7 @@ mocha.setup({ ui, reporter, color, timeout });
 const mochaStatus = {
     completed: 0,
     failed: 0,
-    finished: false
+    finished: false,
 };
 
 // save test status on window to access it with puppeteer

@@ -8,7 +8,7 @@ import { deferred } from 'promise-assist';
 export function hookPageConsole(page: puppeteer.Page): void {
     let currentMessage: Promise<void> = Promise.resolve();
 
-    page.on('console', async msg => {
+    page.on('console', async (msg) => {
         const consoleFn = messageTypeToConsoleFn[msg.type()];
         if (!consoleFn) {
             return;
@@ -18,7 +18,7 @@ export function hookPageConsole(page: puppeteer.Page): void {
         const previousMessage = currentMessage;
         currentMessage = promise;
         try {
-            const msgArgs = await Promise.all(msg.args().map(arg => extractErrorMessage(arg) || arg.jsonValue()));
+            const msgArgs = await Promise.all(msg.args().map((arg) => extractErrorMessage(arg) || arg.jsonValue()));
             await previousMessage;
             consoleFn.apply(console, msgArgs);
         } catch (e) {
@@ -46,7 +46,7 @@ const messageTypeToConsoleFn: { [key in puppeteer.ConsoleMessageType]?: ((...arg
     endGroup: console.groupEnd,
     table: console.table,
     count: console.count,
-    timeEnd: console.timeEnd
+    timeEnd: console.timeEnd,
 
     // we ignore calls to console.clear, as we don't want the page to clear our terminal
     // clear: console.clear

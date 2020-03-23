@@ -37,7 +37,7 @@ const {
     reporter,
     timeout,
     ui,
-    port: preferredPort
+    port: preferredPort,
 } = program;
 
 const foundFiles: string[] = [];
@@ -79,7 +79,7 @@ runTests(foundFiles, {
     colors: colors === undefined ? !!chalk.supportsColor : colors,
     reporter: reporter || defaultReporter,
     timeout,
-    ui
+    ui,
 }).catch(printErrorAndExit);
 
 function printErrorAndExit(message: unknown) {

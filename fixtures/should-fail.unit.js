@@ -4,6 +4,6 @@ describe('suite 2', () => {
     });
 
     it('should fail', () => {
-        throw new Error('some error message')
+        throw new Error('some error message');
     });
 });

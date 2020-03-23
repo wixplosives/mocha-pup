@@ -33,9 +33,9 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
             entry: {
                 ...getEntryObject(webpackConfig.entry),
                 mocha: mochaSetupPath,
-                units: testFiles
+                units: testFiles,
             },
-            plugins: createPluginsConfig(webpackConfig.plugins, options)
+            plugins: createPluginsConfig(webpackConfig.plugins, options),
         });
 
         if (!keepOpen) {
@@ -48,7 +48,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
                             cb();
                         }
                     },
-                    invalidate: () => undefined
+                    invalidate: () => undefined,
                 };
             };
         }
@@ -56,7 +56,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
         const devMiddleware = webpackDevMiddleware(compiler, { logLevel: 'warn', publicPath: '/' });
         closables.push(devMiddleware);
 
-        const webpackStats = await new Promise<webpack.Stats>(resolve => {
+        const webpackStats = await new Promise<webpack.Stats>((resolve) => {
             compiler.hooks.done.tap('mocha-pup hook', resolve);
         });
 
@@ -81,7 +81,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
         const [page] = await browser.pages();
 
         hookPageConsole(page);
-        page.on('dialog', dialog => dialog.dismiss());
+        page.on('dialog', (dialog) => dialog.dismiss());
 
         const failsOnPageError = new Promise((_resolve, reject) =>
             page.once('pageerror', reject).once('error', reject)
@@ -96,7 +96,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
         }
     } finally {
         if (!keepOpen) {
-            await Promise.all(closables.map(closable => closable.close()));
+            await Promise.all(closables.map((closable) => closable.close()));
             closables.length = 0;
         }
     }
@@ -115,9 +115,9 @@ function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IR
                 MOCHA_UI: JSON.stringify(options.ui),
                 MOCHA_COLORS: options.colors,
                 MOCHA_REPORTER: JSON.stringify(options.reporter),
-                MOCHA_TIMEOUT: options.timeout
-            }
-        })
+                MOCHA_TIMEOUT: options.timeout,
+            },
+        }),
     ];
 }
 
