@@ -27,7 +27,7 @@
     "chalk": "^4.0.0",
     "commander": "^5.0.0",
     "create-listening-server": "^1.0.0",
-    "css-loader": "^3.5.0",
+    "css-loader": "^3.5.1",
     "express": "^4.17.1",
     "find-up": "^4.1.0",
     "glob": "^7.1.6",
