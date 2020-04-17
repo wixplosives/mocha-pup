@@ -3,7 +3,7 @@ import { spawnSync } from 'child_process';
 import { expect } from 'chai';
 
 const cliSrcPath = require.resolve('../src/cli.ts');
-const fixturesRoot = join(__dirname, '..', 'fixtures');
+const fixturesRoot = join(__dirname, 'fixtures');
 
 const runMochaPup = (options: { args: string[]; fixture?: string }) =>
     spawnSync(
