@@ -1,5 +1,3 @@
-require('wtfnode');
-
 import path from 'path';
 import program from 'commander';
 import glob from 'glob';
@@ -82,9 +80,7 @@ runTests(foundFiles, {
     reporter: reporter || defaultReporter,
     timeout,
     ui,
-})
-    .then(() => require('wtfnode').dump())
-    .catch(printErrorAndExit);
+}).catch(printErrorAndExit);
 
 function printErrorAndExit(message: unknown) {
     console.error(message);
