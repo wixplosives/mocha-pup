@@ -16,7 +16,8 @@
     "lint": "eslint . --ext .ts,.tsx -f codeframe",
     "typecheck": "tsc --noEmit",
     "mocha-pup": "node -r @ts-tools/node/r ./src/cli.ts",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prettify": "npx prettier \"./**/*.{md,js,ts,tsx}\" --write"
   },
   "peerDependencies": {
     "mocha": ">=7",
