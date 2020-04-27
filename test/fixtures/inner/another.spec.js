@@ -1,5 +1,5 @@
 describe('inner', () => {
-    it('should pass', () => {
-        // do nothing
-    });
+  it('should pass', () => {
+    // do nothing
+  });
 });

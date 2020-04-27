@@ -1,7 +1,7 @@
 describe('suite', () => {
-    it('should pass', () => {
-        // do nothing
-    });
+  it('should pass', () => {
+    // do nothing
+  });
 });
 
 const heavyToSerialize = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

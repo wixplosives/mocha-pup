@@ -67,8 +67,7 @@
   ],
   "prettier": {
     "printWidth": 120,
-    "singleQuote": true,
-    "tabWidth": 4
+    "singleQuote": true
   },
   "license": "MIT",
   "repository": "git@github.com:wixplosives/mocha-pup.git"
