@@ -38,21 +38,6 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
       plugins: createPluginsConfig(webpackConfig.plugins, options),
     });
 
-    if (!keepOpen) {
-      // force fake watching on single runs
-      compiler.watch = function watch(_watchOptions, handler) {
-        compiler.run(handler);
-        return {
-          close(cb) {
-            if (cb) {
-              cb();
-            }
-          },
-          invalidate: () => undefined,
-        };
-      };
-    }
-
     const devMiddleware = webpackDevMiddleware(compiler, { logLevel: 'warn', publicPath: '/' });
     closables.push(devMiddleware);
 
