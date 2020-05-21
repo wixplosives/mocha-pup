@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import path from 'path';
 import program from 'commander';
 import glob from 'glob';
@@ -8,7 +9,7 @@ import findUp from 'find-up';
 import { runTests } from './run-tests';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { version, description } = require('../package.json');
+const { version, description } = require('../package.json') as { version: string; description: string };
 
 process.on('unhandledRejection', printErrorAndExit);
 
@@ -64,7 +65,7 @@ const puppeteerConfig: puppeteer.LaunchOptions = dev
   : { defaultViewport: { width: 1024, height: 768 } };
 
 // load user's webpack configuration
-const webpackConfig: webpack.Configuration = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {};
+const webpackConfig = webpackConfigPath ? (require(path.resolve(webpackConfigPath)) as webpack.Configuration) : {};
 if (typeof webpackConfig === 'function') {
   printErrorAndExit(chalk.red('Webpack configuration file exports a function, which is not yet supported.'));
 }

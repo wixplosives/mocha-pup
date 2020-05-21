@@ -55,5 +55,6 @@ const messageTypeToConsoleFn: { [key in puppeteer.ConsoleMessageType]?: ((...arg
 // workaround to get hidden description
 // jsonValue() on errors returns {}
 function extractErrorMessage(arg: any): string | undefined {
-  return arg?._remoteObject?.subtype === 'error' ? arg._remoteObject.description : undefined;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  return arg?._remoteObject?.subtype === 'error' ? (arg._remoteObject.description as string) : undefined;
 }

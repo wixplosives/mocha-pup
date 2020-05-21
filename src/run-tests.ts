@@ -21,7 +21,7 @@ export interface IRunTestsOptions {
   timeout?: number;
 }
 
-export async function runTests(testFiles: string[], options: IRunTestsOptions = {}) {
+export async function runTests(testFiles: string[], options: IRunTestsOptions = {}): Promise<void> {
   const { webpackConfig = {}, puppeteerConfig = {}, preferredPort = 3000, keepOpen, colors } = options;
   const closables: Array<{ close(): unknown | Promise<unknown> }> = [];
 
@@ -90,7 +90,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
     const failedCount = await Promise.race([waitForTestResults(page), failsOnPageError]);
 
     if (failedCount) {
-      throw chalk.red(`${failedCount} tests failed!`);
+      throw chalk.red(`${failedCount as number} tests failed!`);
     }
   } finally {
     if (!keepOpen) {
