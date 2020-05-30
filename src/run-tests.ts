@@ -83,7 +83,10 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
     hookPageConsole(page);
     page.on('dialog', (dialog) => dialog.dismiss());
 
-    const failsOnPageError = new Promise((_resolve, reject) => page.once('pageerror', reject).once('error', reject));
+    const failsOnPageError = new Promise((_resolve, reject) => {
+      page.once('pageerror', reject);
+      page.once('error', reject);
+    });
 
     await page.goto(`http://localhost:${port}/mocha.html`);
 
