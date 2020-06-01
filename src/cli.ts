@@ -65,6 +65,7 @@ const puppeteerConfig: puppeteer.LaunchOptions = dev
   : { defaultViewport: { width: 1024, height: 768 } };
 
 // load user's webpack configuration
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const webpackConfig = webpackConfigPath ? (require(path.resolve(webpackConfigPath)) as webpack.Configuration) : {};
 if (typeof webpackConfig === 'function') {
   printErrorAndExit(chalk.red('Webpack configuration file exports a function, which is not yet supported.'));
