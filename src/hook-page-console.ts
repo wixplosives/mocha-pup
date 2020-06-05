@@ -8,6 +8,7 @@ import { deferred } from 'promise-assist';
 export function hookPageConsole(page: puppeteer.Page): void {
   let currentMessage: Promise<void> = Promise.resolve();
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   page.on('console', async (msg) => {
     const consoleFn = messageTypeToConsoleFn[msg.type()];
     if (!consoleFn) {
@@ -29,6 +30,7 @@ export function hookPageConsole(page: puppeteer.Page): void {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const messageTypeToConsoleFn: { [key in puppeteer.ConsoleMessageType]?: ((...args: any[]) => void) | undefined } = {
   log: console.log,
   warning: console.warn,
@@ -54,6 +56,7 @@ const messageTypeToConsoleFn: { [key in puppeteer.ConsoleMessageType]?: ((...arg
 
 // workaround to get hidden description
 // jsonValue() on errors returns {}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function extractErrorMessage(arg: any): string | undefined {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   return arg?._remoteObject?.subtype === 'error' ? (arg._remoteObject.description as string) : undefined;

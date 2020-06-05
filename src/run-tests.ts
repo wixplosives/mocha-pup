@@ -81,6 +81,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
     const [page] = await browser.pages();
 
     hookPageConsole(page);
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     page.on('dialog', (dialog) => dialog.dismiss());
 
     const failsOnPageError = new Promise((_resolve, reject) => {
