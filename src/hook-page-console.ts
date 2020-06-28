@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+import type puppeteer from 'puppeteer';
 import { deferred } from 'promise-assist';
 
 /**

@@ -2,8 +2,8 @@
 import path from 'path';
 import program from 'commander';
 import glob from 'glob';
-import webpack from 'webpack';
-import puppeteer from 'puppeteer';
+import type webpack from 'webpack';
+import type puppeteer from 'puppeteer';
 import chalk from 'chalk';
 import findUp from 'find-up';
 import { runTests } from './run-tests';
