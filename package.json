@@ -55,7 +55,7 @@
     "mocha": "^8.0.1",
     "puppeteer": "^5.1.0",
     "rimraf": "^3.0.2",
-    "typescript": "~3.9.6",
+    "typescript": "~3.9.7",
     "webpack": "^4.43.0"
   },
   "files": [
