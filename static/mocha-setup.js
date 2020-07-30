@@ -1,7 +1,6 @@
-// mocha library itself, to have it set up on global
-require('mocha/mocha.js');
+import mocha from 'mocha/mocha.js';
 // styles needed by the html reporter
-require('!style-loader!css-loader!mocha/mocha.css');
+import '!style-loader!css-loader!mocha/mocha.css';
 
 // env variables injected via webpack.DefinePlugin
 const ui = process.env.MOCHA_UI;
