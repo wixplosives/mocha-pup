@@ -1,6 +1,9 @@
-import mocha from 'mocha/mocha.js';
+import mochaModule from 'mocha/mocha.js';
 // styles needed by the html reporter
 import '!style-loader!css-loader!mocha/mocha.css';
+
+// mocha@8.2.1 changed into umd bundle
+const mocha = window.mocha || mochaModule;
 
 // env variables injected via webpack.DefinePlugin
 const ui = process.env.MOCHA_UI;

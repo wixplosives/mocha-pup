@@ -19,7 +19,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "mocha": ">=8.1.0",
+    "mocha": ">=7",
     "puppeteer": ">=1",
     "webpack": ">=4"
   },
