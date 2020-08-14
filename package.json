@@ -2,13 +2,13 @@
   "name": "mocha-pup",
   "description": "Run mocha tests in Chrome, using webpack and puppeteer.",
   "version": "4.0.2",
-  "main": "cjs/index.js",
-  "types": "cjs/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "mocha-pup": "bin/mocha-pup.js"
   },
   "scripts": {
-    "clean": "rimraf ./cjs",
+    "clean": "rimraf ./dist",
     "prebuild": "npm run clean",
     "build": "tsc -p tsconfig.build.json",
     "pretest": "npm run typecheck && npm run lint",
@@ -60,7 +60,7 @@
   },
   "files": [
     "bin",
-    "cjs",
+    "dist",
     "src",
     "static"
   ],
