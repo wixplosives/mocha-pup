@@ -21,7 +21,7 @@
   "peerDependencies": {
     "mocha": ">=7",
     "puppeteer": ">=1",
-    "webpack": ">=4"
+    "webpack": "^4.0.0"
   },
   "dependencies": {
     "chalk": "^4.1.0",
