@@ -38,7 +38,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
       plugins: createPluginsConfig(webpackConfig.plugins, options),
     });
 
-    const devMiddleware = webpackDevMiddleware(compiler, { logLevel: 'warn', publicPath: '/' });
+    const devMiddleware = webpackDevMiddleware(compiler);
     closables.push(devMiddleware);
 
     const webpackStats = await new Promise<webpack.Stats>((resolve) => {
