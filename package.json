@@ -21,7 +21,7 @@
   "peerDependencies": {
     "mocha": ">=7",
     "puppeteer": ">=1",
-    "webpack": "^4.0.0"
+    "webpack": ">=5"
   },
   "dependencies": {
     "chalk": "^4.1.0",
@@ -31,7 +31,7 @@
     "express": "^4.17.1",
     "find-up": "^5.0.0",
     "glob": "^7.1.6",
-    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-plugin": "^5.0.0-alpha.12",
     "promise-assist": "^1.3.0",
     "style-loader": "^2.0.0",
     "webpack-dev-middleware": "^4.0.1"
@@ -45,8 +45,6 @@
     "@types/mocha": "^8.0.3",
     "@types/node": "10",
     "@types/puppeteer": "^5.4.0",
-    "@types/webpack": "^4.41.24",
-    "@types/webpack-dev-middleware": "^3.7.2",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
     "chai": "^4.2.0",
@@ -56,7 +54,7 @@
     "puppeteer": "^5.4.1",
     "rimraf": "^3.0.2",
     "typescript": "~4.0.5",
-    "webpack": "^4.44.2"
+    "webpack": "^5.4.0"
   },
   "files": [
     "bin",

@@ -2,11 +2,14 @@ import express from 'express';
 import chalk from 'chalk';
 import puppeteer from 'puppeteer';
 import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import { safeListeningHttpServer } from 'create-listening-server';
 import { hookPageConsole } from './hook-page-console';
+
+// @types/webpack-dev-middleware are not yet compatible with webpack@5
+// eslint-disable-next-line
+const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const mochaSetupPath = require.resolve('../static/mocha-setup.js');
 
@@ -31,14 +34,15 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
       mode: 'development',
       ...webpackConfig,
       entry: {
-        ...getEntryObject(webpackConfig.entry),
+        ...(await getEntryObject(webpackConfig.entry)),
         mocha: mochaSetupPath,
         units: testFiles,
       },
       plugins: createPluginsConfig(webpackConfig.plugins, options),
     });
 
-    const devMiddleware = webpackDevMiddleware(compiler);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const devMiddleware = webpackDevMiddleware(compiler) as express.RequestHandler & { close(): void };
     closables.push(devMiddleware);
 
     const webpackStats = await new Promise<webpack.Stats>((resolve) => {
@@ -89,7 +93,10 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
   }
 }
 
-function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IRunTestsOptions): webpack.Plugin[] {
+function createPluginsConfig(
+  existingPlugins: webpack.WebpackPluginInstance[] = [],
+  options: IRunTestsOptions
+): webpack.WebpackPluginInstance[] {
   return [
     ...existingPlugins,
 
@@ -100,9 +107,9 @@ function createPluginsConfig(existingPlugins: webpack.Plugin[] = [], options: IR
     new webpack.DefinePlugin({
       'process.env': {
         MOCHA_UI: JSON.stringify(options.ui),
-        MOCHA_COLORS: options.colors,
+        MOCHA_COLORS: JSON.stringify(options.colors),
         MOCHA_REPORTER: JSON.stringify(options.reporter),
-        MOCHA_TIMEOUT: options.timeout,
+        MOCHA_TIMEOUT: JSON.stringify(options.timeout),
       },
     }),
   ];
@@ -117,13 +124,14 @@ async function waitForTestResults(page: puppeteer.Page): Promise<number> {
  * Helper around handling the multi-type entry field of user webpack config.
  * Converts it to object style, to allow adding additional chunks.
  */
-function getEntryObject(entry: string | string[] | webpack.Entry | webpack.EntryFunc = {}): webpack.Entry {
-  const entryType = typeof entry;
-
-  if (entryType === 'string' || Array.isArray(entry)) {
-    return { main: entry as string | string[] };
-  } else if (entryType === 'object') {
-    return entry as webpack.Entry;
+async function getEntryObject(entry: webpack.Entry = {}) {
+  if (typeof entry === 'function') {
+    entry = await entry();
   }
-  throw new Error(`Unsupported "entry" field type (${entryType}) in webpack configuration.`);
+  if (typeof entry === 'string' || Array.isArray(entry)) {
+    return { main: entry };
+  } else if (typeof entry === 'object') {
+    return entry;
+  }
+  throw new Error(`Unsupported "entry" field type (${typeof entry}) in webpack configuration.`);
 }
