@@ -13,6 +13,8 @@ Install `mocha-pup` as a dev dependency:
 npm i mocha-pup --save-dev
 ```
 
+`mocha-pup` expects `mocha`, `puppeteer`, `webpack`, and `html-webpack-plugin` to also be installed in the project.
+
 ## Usage
 
 A CLI named `mocha-pup` is available after installation:
