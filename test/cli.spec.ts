@@ -2,15 +2,15 @@ import { join, resolve } from 'path';
 import { spawnSync } from 'child_process';
 import { expect } from 'chai';
 
-const cliSrcPath = require.resolve('../src/cli.ts');
+const cliPath = require.resolve('../bin/mocha-pup.js');
 const fixturesRoot = join(__dirname, 'fixtures');
 
 const runMochaPup = (options: { args: string[]; fixture?: string }) =>
-  spawnSync(
-    'node',
-    ['-r', '@ts-tools/node/r', cliSrcPath, '--no-colors', '-l', ...options.args.map((arg) => `"${arg}"`)],
-    { cwd: resolve(fixturesRoot, options.fixture || '.'), shell: true, encoding: 'utf8' }
-  );
+  spawnSync('node', [cliPath, '--no-colors', '-l', ...options.args.map((arg) => `"${arg}"`)], {
+    cwd: resolve(fixturesRoot, options.fixture || '.'),
+    shell: true,
+    encoding: 'utf8',
+  });
 
 describe('mocha-pup', function () {
   this.timeout(20_000);
