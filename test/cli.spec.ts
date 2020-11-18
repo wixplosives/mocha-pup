@@ -6,7 +6,7 @@ const cliPath = require.resolve('../bin/mocha-pup.js');
 const fixturesRoot = join(__dirname, 'fixtures');
 
 const runMochaPup = (options: { args: string[]; fixture?: string }) =>
-  spawnSync('node', [cliPath, '--no-colors', '-l', ...options.args.map((arg) => `"${arg}"`)], {
+  spawnSync('node', [cliPath, '-l', ...options.args.map((arg) => `"${arg}"`)], {
     cwd: resolve(fixturesRoot, options.fixture || '.'),
     shell: true,
     encoding: 'utf8',

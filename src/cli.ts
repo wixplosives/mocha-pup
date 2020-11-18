@@ -26,7 +26,6 @@ program
   .option('-p, --port <number>', 'port to start the http server with', parseNumber, 3000)
   .option('--reporter <spec/html/dot/...>', 'mocha reporter to use (default: "spec")')
   .option('--ui <bdd|tdd|qunit|exports>', 'mocha user interface', 'bdd')
-  .option('--no-colors', 'turn off colors (default: env detected)')
   .parse(process.argv);
 
 const {
@@ -34,7 +33,6 @@ const {
   webpackConfig: webpackConfigPath = findUp.sync('webpack.config.js'),
   dev,
   listFiles,
-  colors,
   reporter,
   timeout,
   ui,
@@ -78,7 +76,6 @@ runTests(foundFiles, {
   webpackConfig,
   puppeteerConfig,
   keepOpen: dev,
-  colors: colors === undefined ? !!chalk.supportsColor : colors,
   reporter: reporter || defaultReporter,
   timeout,
   ui,

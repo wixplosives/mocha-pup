@@ -25,7 +25,7 @@ export interface IRunTestsOptions {
 }
 
 export async function runTests(testFiles: string[], options: IRunTestsOptions = {}): Promise<void> {
-  const { webpackConfig = {}, puppeteerConfig = {}, preferredPort = 3000, keepOpen, colors } = options;
+  const { webpackConfig = {}, puppeteerConfig = {}, preferredPort = 3000, keepOpen } = options;
   const closables: Array<{ close(): unknown | Promise<unknown> }> = [];
 
   try {
@@ -39,21 +39,23 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
         units: testFiles,
       },
       plugins: createPluginsConfig(webpackConfig.plugins, options),
+      infrastructureLogging: {
+        level: 'warn',
+        ...webpackConfig.infrastructureLogging,
+      },
     });
 
     const devMiddleware = webpackDevMiddleware(compiler);
     closables.push(devMiddleware);
 
+    compiler.hooks.done.tap('mocha-pup', () => console.log(`Done bundling.`));
+
     const webpackStats = await new Promise<webpack.Stats>((resolve) => {
-      compiler.hooks.done.tap('mocha-pup hook', resolve);
+      compiler.hooks.done.tap('mocha-pup', resolve);
     });
 
-    console.log(`Done bundling.`);
-
     if (webpackStats.hasErrors()) {
-      throw new Error(webpackStats.toString({ colors }));
-    } else if (webpackStats.hasWarnings()) {
-      console.warn(webpackStats.toString({ colors }));
+      throw new Error('Errors while bundling.');
     }
     const app = express();
     app.use(devMiddleware);
