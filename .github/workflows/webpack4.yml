@@ -1,9 +1,9 @@
-name: webpack5
+name: webpack4
 
 on: [push, pull_request]
 
 jobs:
-  webpack5:
+  webpack4:
     name: node ${{ matrix.node-version }} / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -18,5 +18,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run build
-      - run: npm i webpack@5 -D
+      - run: npm i webpack@4 html-webpack-plugin@4 -D
       - run: npm run test:only
