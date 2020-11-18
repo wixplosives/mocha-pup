@@ -1,5 +1,6 @@
 /** @type {import('webpack').Configuration} */
 module.exports = {
+  devtool: 'source-map',
   module: {
     rules: [
       {

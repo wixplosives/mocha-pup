@@ -2,6 +2,9 @@ import mochaModule from 'mocha/mocha.js';
 // styles needed by the html reporter
 import '!style-loader!css-loader!mocha/mocha.css';
 
+import 'source-map-support/browser-source-map-support';
+sourceMapSupport.install();
+
 // mocha@8.2.1 changed into umd bundle
 const mocha = window.mocha || mochaModule;
 
