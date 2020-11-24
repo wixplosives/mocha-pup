@@ -57,18 +57,6 @@ describe('mocha-pup', function () {
     expect(status).to.equal(0);
   });
 
-  it('shows source locations on errors for external source maps', () => {
-    const { stdout, status } = runMochaPup({
-      args: ['./fails.ts'],
-      fixture: 'with-config',
-    });
-
-    expect(stdout).to.include('Found 1 test files');
-    expect(stdout).to.include('1 failing');
-    expect(stdout).to.include('fails.ts:8:11');
-    expect(status).to.equal(1);
-  });
-
   it('allows bundling using custom webpack configuration', () => {
     const { stdout, status } = runMochaPup({
       args: ['./typescript-file.ts', '-c', './my.config.js'],
