@@ -50,7 +50,7 @@
     "@typescript-eslint/parser": "^4.9.0",
     "chai": "^4.2.0",
     "eslint": "^7.14.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^7.0.0",
     "html-webpack-plugin": "^5.0.0-alpha.14",
     "mocha": "^8.2.1",
     "puppeteer": "^5.5.0",
