@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
-    "commander": "^6.2.0",
+    "commander": "^6.2.1",
     "create-listening-server": "^1.0.0",
     "css-loader": "^5.0.1",
     "express": "^4.17.1",
