@@ -74,12 +74,12 @@ describe('mocha-pup', function () {
   });
 
   it('fails when there are bundling errors', () => {
-    const { stdout, stderr, status } = runMochaPup({ args: ['./typescript-file.ts'], fixture: 'custom-config' });
+    const { stdout, status } = runMochaPup({ args: ['./typescript-file.ts'], fixture: 'custom-config' });
 
     expect(stdout).to.include('Found 1 test files');
-    expect(stderr).to.include('ERROR in ./typescript-file.ts');
-    expect(stderr).to.include('Module parse failed: Unexpected token');
-    expect(stderr).to.include('You may need an appropriate loader to handle this file type');
+    expect(stdout).to.include('ERROR in ./typescript-file.ts');
+    expect(stdout).to.include('Module parse failed: Unexpected token');
+    expect(stdout).to.include('You may need an appropriate loader to handle this file type');
     expect(status).to.equal(1);
   });
 
