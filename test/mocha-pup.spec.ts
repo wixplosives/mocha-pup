@@ -1,16 +1,21 @@
 import { join, resolve } from 'path';
 import { spawnSync } from 'child_process';
 import { expect } from 'chai';
+import stripAnsi from 'strip-ansi';
 
 const cliPath = require.resolve('../bin/mocha-pup.js');
 const fixturesRoot = join(__dirname, 'fixtures');
 
-const runMochaPup = (options: { args: string[]; fixture?: string }) =>
-  spawnSync('node', [cliPath, '-l', ...options.args.map((arg) => `"${arg}"`)], {
+const runMochaPup = (options: { args: string[]; fixture?: string }) => {
+  const spawnResult = spawnSync('node', [cliPath, '-l', ...options.args.map((arg) => `"${arg}"`)], {
     cwd: resolve(fixturesRoot, options.fixture || '.'),
     shell: true,
     encoding: 'utf8',
   });
+  spawnResult.stdout = stripAnsi(spawnResult.stdout);
+  spawnResult.stderr = stripAnsi(spawnResult.stderr);
+  return spawnResult;
+};
 
 describe('mocha-pup', function () {
   this.timeout(20_000);
