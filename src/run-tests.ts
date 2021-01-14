@@ -39,10 +39,7 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
         units: testFiles,
       },
       plugins: createPluginsConfig(webpackConfig.plugins, options),
-      infrastructureLogging: {
-        level: 'warn',
-        ...webpackConfig.infrastructureLogging,
-      },
+      stats: 'errors-warnings',
     });
 
     const devMiddleware = webpackDevMiddleware(compiler);
