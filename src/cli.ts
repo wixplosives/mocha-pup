@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import path from 'path';
-import program from 'commander';
+import { Command } from 'commander';
 import glob from 'glob';
 import type webpack from 'webpack';
 import type puppeteer from 'puppeteer';
@@ -9,13 +9,18 @@ import findUp from 'find-up';
 import { runTests } from './run-tests';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { version, description } = require('../package.json') as { version: string; description: string };
+const { name, version, description } = require('../package.json') as {
+  name: string;
+  version: string;
+  description: string;
+};
 
 process.on('unhandledRejection', printErrorAndExit);
 
 const parseNumber = (value: string) => parseInt(value, 10);
 
-program
+const program = new Command(name);
+const cliOptions = program
   .version(version, '-v, --version')
   .description(description)
   .usage('[options] <glob ...>')
@@ -26,10 +31,10 @@ program
   .option('-p, --port <number>', 'port to start the http server with', parseNumber, 3000)
   .option('--reporter <spec/html/dot/...>', 'mocha reporter to use (default: "spec")')
   .option('--ui <bdd|tdd|qunit|exports>', 'mocha user interface', 'bdd')
-  .parse(process.argv);
+  .parse()
+  .opts();
 
 const {
-  args,
   webpackConfig: webpackConfigPath = findUp.sync('webpack.config.js'),
   dev,
   listFiles,
@@ -37,10 +42,10 @@ const {
   timeout,
   ui,
   port: preferredPort,
-} = program;
+} = cliOptions;
 
 const foundFiles: string[] = [];
-for (const arg of args) {
+for (const arg of program.args) {
   for (const foundFile of glob.sync(arg, { absolute: true })) {
     foundFiles.push(foundFile);
   }
