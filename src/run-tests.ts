@@ -118,13 +118,11 @@ async function waitForTestResults(page: puppeteer.Page): Promise<number> {
   return page.evaluate('mochaStatus.failed') as Promise<number>;
 }
 
-type EntryObject = Exclude<webpack.Entry, string | string[] | (() => unknown)>;
-
 /**
  * Helper around handling the multi-type entry field of user webpack config.
  * Converts it to object style, to allow adding additional chunks.
  */
-async function getEntryObject(entry: webpack.Entry = {}): Promise<EntryObject> {
+async function getEntryObject(entry: webpack.Entry = {}): Promise<webpack.EntryObject> {
   if (typeof entry === 'function') {
     entry = await entry();
   }
