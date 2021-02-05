@@ -20,7 +20,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "html-webpack-plugin": "^4.0.0 || ^5.0.0-alpha",
+    "html-webpack-plugin": "^4.0.0 || ^5.0.0",
     "mocha": ">=7",
     "puppeteer": ">=1",
     "webpack": "^4.0.0 || ^5.0.0"
