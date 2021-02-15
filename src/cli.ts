@@ -63,8 +63,9 @@ if (listFiles) {
   }
 }
 
-const puppeteerConfig: puppeteer.LaunchOptions = dev
-  ? { defaultViewport: null, devtools: true }
+const puppeteerConfig: puppeteer.LaunchOptions & puppeteer.ChromeArgOptions & puppeteer.BrowserOptions = dev
+  ? // casting to workaround https://github.com/puppeteer/puppeteer/issues/6885
+    { defaultViewport: (null as unknown) as undefined, devtools: true }
   : { defaultViewport: { width: 1024, height: 768 } };
 
 // load user's webpack configuration

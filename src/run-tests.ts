@@ -15,7 +15,7 @@ const mochaSetupPath = require.resolve('../static/mocha-setup.js');
 
 export interface IRunTestsOptions {
   preferredPort?: number;
-  puppeteerConfig?: puppeteer.LaunchOptions;
+  puppeteerConfig?: puppeteer.LaunchOptions & puppeteer.ChromeArgOptions & puppeteer.BrowserOptions;
   webpackConfig?: webpack.Configuration;
   keepOpen?: boolean;
   colors?: boolean;
@@ -68,8 +68,9 @@ export async function runTests(testFiles: string[], options: IRunTestsOptions = 
     const [page] = await browser.pages();
 
     hookPageConsole(page);
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    page.on('dialog', (dialog) => dialog.dismiss());
+    page.on('dialog', (dialog: puppeteer.Dialog) => {
+      void dialog.dismiss();
+    });
 
     const failsOnPageError = new Promise((_resolve, reject) => {
       page.once('pageerror', reject);

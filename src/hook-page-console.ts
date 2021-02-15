@@ -9,7 +9,7 @@ export function hookPageConsole(page: puppeteer.Page): void {
   let currentMessage: Promise<void> = Promise.resolve();
 
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  page.on('console', async (msg) => {
+  page.on('console', async (msg: puppeteer.ConsoleMessage) => {
     const consoleFn = messageTypeToConsoleFn[msg.type()];
     if (!consoleFn) {
       return;
