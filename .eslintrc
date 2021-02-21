@@ -8,12 +8,10 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
-    "prettier/@typescript-eslint"
+    "prettier"
   ],
   "parserOptions": {
-    "project": "./tsconfig.json",
-    "warnOnUnsupportedTypeScriptVersion": false
+    "project": "./tsconfig.json"
   },
   "rules": {
     "@typescript-eslint/unbound-method": "off"
