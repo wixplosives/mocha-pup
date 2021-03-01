@@ -15,7 +15,7 @@ const mochaSetupPath = require.resolve('../static/mocha-setup.js');
 
 export interface IRunTestsOptions {
   preferredPort?: number;
-  puppeteerConfig?: puppeteer.LaunchOptions & puppeteer.ChromeArgOptions & puppeteer.BrowserOptions;
+  puppeteerConfig?: puppeteer.LaunchOptions & puppeteer.BrowserLaunchArgumentOptions & puppeteer.BrowserConnectOptions;
   webpackConfig?: webpack.Configuration;
   keepOpen?: boolean;
   colors?: boolean;
