@@ -50,7 +50,7 @@
     "chai": "^4.3.3",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
-    "html-webpack-plugin": "^5.2.0",
+    "html-webpack-plugin": "^5.3.0",
     "mocha": "^8.3.0",
     "puppeteer": "^8.0.0",
     "rimraf": "^3.0.2",
